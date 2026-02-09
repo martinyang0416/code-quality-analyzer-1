@@ -1,21 +1,25 @@
 import bisect
-import sys
 
 def main():
-    sys.setrecursionlimit(1 << 25)
-    N, Q = map(int, sys.stdin.readline().split())
-    s = sys.stdin.readline().strip()
-    special_str = sys.stdin.readline().strip()
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    Q = int(input[idx+1])
+    idx += 2
 
-    # Parse L and R indices
+    s = input[idx]
+    idx +=1
+
     L_indices = []
     R_indices = []
-    for idx, c in enumerate(s):
+    for i in range(len(s)):
+        c = s[i]
         if c == 'L':
-            L_indices.append(idx)
+            L_indices.append(i+1)  # 1-based
         else:
-            R_indices.append(idx)
+            R_indices.append(i+1)
 
-    # Compute ℓ and r arrays (1-based indexing)
-    ℓ = [0] * (N + 1)
-    r = [0] * (N + 1
+    # tractor i (1-based) has L = L_indices[i-1], R = R_indices[i-1]
+    # precompute the L and R arrays
+    ℓ = L_
