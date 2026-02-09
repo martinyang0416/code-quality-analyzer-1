@@ -1,22 +1,16 @@
 def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    for _ in range(N):
-        R = int(input[idx])
-        C = int(input[idx+1])
-        idx += 2
-        grid = []
-        for _ in range(R):
-            grid.append(input[idx])
-            idx += 1
-        
-        dest_counts = [[0]*C for _ in range(R)]
-        
-        for r in range(R):
-            row = grid[r]
-            for c in range(C):
-                cell = row[c]
-       
+    X, Y = map(int, sys.stdin.readline().split())
+    max_n = Y
+    
+    # Compute smallest prime factors (spf) for all numbers up to max_n
+    spf = [0] * (max_n + 1)
+    for i in range(2, max_n + 1):
+        if spf[i] == 0:
+            spf[i] = i
+            for j in range(i * i, max_n + 1, i):
+                if spf[j] == 0:
+                    spf[j] = i
+    
+    # Compute the dp array where dp[n] is the maximum depth of the tree rooted at n
+    dp = [0] * (max_n +
