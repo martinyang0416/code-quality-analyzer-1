@@ -1,13 +1,10 @@
-def maxUncrossedLines(A, B):
-    m = len(A)
-    n = len(B)
-    dp = [[0] * (n + 1) for _ in range(m + 1)]
-    
-    for i in range(1, m + 1):
-        for j in range(1, n + 1):
-            if A[i-1] == B[j-1]:
-                dp[i][j] = dp[i-1][j-1] + 1
-            else:
-                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
-    
-    return dp[m][n]
+def combinationSum4(nums, target):
+    dp = [0] * (target + 1)
+    dp[0] = 1  # Base case: one way to reach sum 0 (using no numbers)
+    for i in range(1, target + 1):
+        for num in nums:
+            if i >= num:
+                dp[i] += dp[i - num]
+    return dp[target]
+
+# The function calculates the number of combinations (with order) that sum to the target using dynamic programming.
