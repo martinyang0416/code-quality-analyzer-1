@@ -1,19 +1,16 @@
-def min_sum_of_lengths(arr, target):
-    n = len(arr)
-    if n < 2:
+def findMinMoves(machines):
+    n = len(machines)
+    total = sum(machines)
+    if total % n != 0:
         return -1
-    
-    # Compute left array
-    prefix_sum = 0
-    prefix_map = {0: -1}
-    left = [float('inf')] * n
-    for i in range(n):
-        prefix_sum += arr[i]
-        needed = prefix_sum - target
-        if needed in prefix_map:
-            j = prefix_map[needed]
-            current_length = i - j
-            if i == 0:
-                left[i] = current_length
-            else:
-                left[i] = min(left[i
+    target = total // n
+    surplus = [m - target for m in machines]
+    max_surplus = max(surplus)
+    cum_sum = 0
+    max_cum = 0
+    for s in surplus:
+        cum_sum += s
+        current_abs = abs(cum_sum)
+        if current_abs > max_cum:
+            max_cum = current_abs
+    return max(max_surplus, max_cum)
