@@ -1,25 +1,19 @@
-"""
-Code of Ayush Tiwari
-Codeforces: servermonk
-Codechef: ayush572000
-
-"""
 import sys
-input = sys.stdin.buffer.readline
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def solution():
-    n=int(input())
-    l=list(map(int,input().split()))
-    beg=0
-    end=10**12
-    m=max(l)
-    s=sum(l)
-    while beg<end-1:
-        mid=(beg+end)//2
-        if n*mid-s>=mid and mid>=m:
-            end=mid
-        else:
-            beg=mid
-    print(beg+1)
-
-solution()
+import builtins
+import re
