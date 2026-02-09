@@ -1,24 +1,19 @@
-n, m, a, b, p, q = map(int, input().split())
+import sys
+from sys import stdin
+from collections import defaultdict
 
-if a == 1 and b == 1:
-    print(n)
-else:
-    low = 0
-    high = n - 1
-    k_low = -1
-    while low <= high:
-        mid = (low + high) // 2
-        a_pow = a ** mid
-        b_pow = b ** mid
-        current = p * a_pow + q * b_pow
-        if current <= m:
-            k_low = mid
-            low = mid + 1
-        else:
-            high = mid - 1
+def main():
+    sys.setrecursionlimit(1 << 25)
+    N, M = map(int, stdin.readline().split())
+    w = list(map(int, stdin.readline().split()))
+    total_sum = sum(w)
+    adj = [[] for _ in range(N+1)]
+    for _ in range(M):
+        u, v = map(int, stdin.readline().split())
+        adj[u].append(v)
+        adj[v].append(u)
     
-    candidates = []
-    if k_low == -1:
-        candidates.append(0)
-    else:
-        candidates.appen
+    disc = [0] * (N + 1)
+    low = [0] * (N + 1)
+    parent = [0] * (N + 1)
+    sum_subtree = [0] * (N
