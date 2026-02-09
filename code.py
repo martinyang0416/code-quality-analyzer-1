@@ -1,8 +1,23 @@
-M = int(input())
-if M % 2 == 0:
-    sum_x = (M * M) // 2
-else:
-    sum_x = (M * M - 1) // 2
-sum_brr_diff = (3 * sum_x) // 2
-operations = sum_brr_diff // 2
-print(operations)
+import heapq
+
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        M = int(input[idx])
+        idx += 1
+        sizes = list(map(int, input[idx:idx+M]))
+        idx += M
+        
+        heap = []
+        for s in sizes:
+            heapq.heappush(heap, s)
+        
+        total = 0
+        while len(heap) > 1:
+            a = heapq.heappop(heap)
+            b = heapq.heappop(heap)
+            merged = a +
