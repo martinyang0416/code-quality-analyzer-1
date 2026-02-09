@@ -1,14 +1,19 @@
-def fac(x):
-	p = 1
-	for i in range(2, x + 1):
-		p *= i
-	return p
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-
-def c(n, k):
-	return fac(n) // (fac(k) * fac(n - k))
-
-n = int(input())
-print(c(n, 5) + c(n, 6) + c(n, 7))
-
- 	 								 	     			   	 		 		
+import builtins
+import re
