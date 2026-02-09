@@ -1,25 +1,13 @@
-n, m, k = map(int, input().split())
-grid = [list(input().strip()) for _ in range(n)]
+import math
 
-empty = []
-for i in range(n):
-    for j in range(m):
-        if grid[i][j] == '.':
-            empty.append((i, j))
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
+a.sort()
 
-from collections import deque
-visited = set()
-order = []
-q = deque()
+total = 0
+for i in range(n-1):
+    diff = abs(a[i+1] - a[i])
+    multiplier = math.ceil((i+1) / k)
+    total += diff * multiplier
 
-start = empty[0]
-q.append(start)
-visited.add(start)
-
-directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
-while q:
-    i, j = q.popleft()
-    order.append((i, j))
-    for di, dj in directions:
-        ni, nj = i + di, j + dj
-       
+print(total)
