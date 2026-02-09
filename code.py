@@ -1,21 +1,16 @@
-import sys
-from collections import deque
+c, v0, v1, a, l = map(int, input().split())
 
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    adj = [[] for _ in range(n + 1)]
-    for _ in range(m):
-        u, v = map(int, sys.stdin.readline().split())
-        adj[u].append(v)
-        adj[v].append(u)
-    
-    color = [-1] * (n + 1)
-    possible = True
-    
-    for u in range(1, n + 1):
-        if color[u] == -1:
-            if not adj[u]:
-                color[u] = 0
-                continue
-            queue = deque([u])
-      
+if v0 >= c:
+    print(1)
+else:
+    days = 1
+    total = v0
+    while True:
+        days += 1
+        speed = v0 + a * (days - 1)
+        if speed > v1:
+            speed = v1
+        total += speed - l
+        if total >= c:
+            print(days)
+            break
