@@ -1,20 +1,22 @@
-import math
+import bisect
+from collections import defaultdict
 
-n, L, R = map(int, input().split())
-MOD = 10**9 + 7
+n = int(input())
+substring_map = defaultdict(list)
 
-# Compute derangements D[0..n]
-D = [0] * (n + 1)
-D[0] = 1
-if n >= 1:
-    D[1] = 0
-for i in range(2, n + 1):
-    D[i] = (i - 1) * (D[i - 1] + D[i - 2])
+for idx in range(1, n + 1):
+    s = input().strip()
+    m = len(s)
+    unique_substrings = set()
+    for i in range(m):
+        for j in range(i + 1, m + 1):
+            unique_substrings.add(s[i:j])
+    for sub in unique_substrings:
+        substring_map[sub].append(idx)
 
-sum_total = 0
-for x in range(L, R + 1):
-    sum_total += math.comb(n, x) * D[x]
+# Sort the lists for binary search
+for sub in substring_map:
+    substring_map[sub].sort()
 
-fact_n = math.factorial(n)
-result = (sum_total * pow(fact_n, MOD - 2, MOD)) % MOD
-print(result)
+q = int(input())
+for _ in range
