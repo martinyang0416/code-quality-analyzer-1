@@ -1,21 +1,21 @@
-Q = int(input())
-for _ in range(Q):
-    s = input().strip()
-    n = len(s)
-    if n < 3:
-        print(-1)
-        continue
-    min_ops = float('inf')
-    for i in range(n - 2):
-        substr = s[i:i+3]
-        if substr[1] != 'B':
-            continue
-        changes = 0
-        if substr[0] != 'A':
-            changes += 1
-        if substr[2] != 'A':
-            changes += 1
-        total_ops = changes + (n - 3)
-        if total_ops < min_ops:
-            min_ops = total_ops
-    print(min_op
+MOD = 10**9 + 7
+
+def main():
+    import sys
+    N = int(sys.stdin.readline())
+    if N < 3:
+        print(0)
+        return
+    A = list(map(int, sys.stdin.readline().split()))
+    
+    prefix = A[0] + A[1]
+    sum1 = A[0] * 1
+    sum2 = A[1] * 1
+    total = (sum1 + sum2) * A[2]
+    
+    for m in range(3, N):
+        previous_prefix = prefix
+        new_prefix = previous_prefix + A[m - 1]
+        new_sum1 = sum1 + previous_prefix
+        new_sum2 = sum2 + A[m - 1] * (m - 1)
+        contribution 
