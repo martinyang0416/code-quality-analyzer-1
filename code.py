@@ -1,19 +1,21 @@
-import sys
-from collections import defaultdict
-
-# Precompute prime factors for numbers 1 to 100
-primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-
-prime_factors = {}
-for k in range(1, 101):
-    factors = defaultdict(int)
-    num = k
-    for p in primes:
-        if p > num:
-            break
-        while num % p == 0:
-            factors[p] += 1
-            num //= p
-    if num > 1 and k != 1:
-        factors[num] += 1
-    prime_factors[k] 
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    for _ in range(T):
+        N = int(input[ptr])
+        ptr += 1
+        A = list(map(int, input[ptr:ptr+N]))
+        ptr += N
+        prefix = [0]
+        current = 0
+        for num in A:
+            current += num
+            prefix.append(current)
+        Q = int(input[ptr])
+        ptr += 1
+        for __ in range(Q):
+            Q1, Q2 = map(int, input[ptr:ptr+2])
+           
