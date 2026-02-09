@@ -1,24 +1,21 @@
 import sys
 
 def main():
-    max_n = 10**6
-    rsum = [0] * (max_n + 1)
-    rsum[0] = 0
-    for n in range(1, max_n + 1):
-        if n == 1:
-            rsum[n] = 1
-        elif n == 2:
-            rsum[n] = 2
-        elif n == 3:
-            rsum[n] = 6
-        elif n == 4:
-            rsum[n] = 6
-        elif n == 5:
-            rsum[n] = 3
-        else:
-            rsum[n] = 9
-    
-    pre_sum = [0] * (max_n + 1)
-    for i in range(1, max_n + 1):
-        pre_sum[i] = pre_sum[i-1] + rsum[i]
-   
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    for _ in range(T):
+        N = int(input[ptr])
+        M = int(input[ptr + 1])
+        ptr += 2
+        res = []
+        for _ in range(N):
+            min_p = float('inf')
+            best = 0
+            for shop in range(M):
+                d1 = int(input[ptr])
+                d2 = int(input[ptr + 1])
+                d3 = int(input[ptr + 2])
+                ptr += 3
+              
