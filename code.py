@@ -1,22 +1,25 @@
-import sys
-from math import gcd
+n, x = map(int, input().split())
+a = list(map(int, input().split()))
+a.sort()
 
-def main():
-    max_a = 10**6
-    spf = list(range(max_a + 1))
-    for i in range(2, int(max_a**0.5) + 1):
-        if spf[i] == i:
-            for j in range(i * i, max_a + 1, i):
-                if spf[j] == j:
-                    spf[j] = i
+max_happy = 0
 
-    input_data = sys.stdin.read().split()
-    n = int(input_data[0])
-    a = list(map(int, input_data[1:n+1]))
-
-    prime_counts = {}
-    for num in a:
-        if num == 1:
-            continue
-        x = num
-        seen_
+for k in range(n, -1, -1):
+    if k > len(a):
+        continue
+    sum_S = sum(a[:k])
+    remaining = a[k:]
+    zeros_remaining = sum(1 for num in remaining if num == 0)
+    
+    if sum_S + zeros_remaining > x:
+        continue
+    delta = x - sum_S - zeros_remaining
+    if delta < 0:
+        continue
+    
+    if zeros_remaining > 0:
+        print(k)
+        exit()
+    else:
+        m = len(remaining)
+ 
