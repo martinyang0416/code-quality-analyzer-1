@@ -1,21 +1,19 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(input[idx])
-        idx += 1
-        A = list(map(int, input[idx:idx + N]))
-        idx += N
-        if any(a < 2 for a in A):
-            print(-1)
-        else:
-            sum_A = sum(A)
-            min_A = min(A)
-            ans = sum_A - (min_A - 1) + 1
-            print(ans)
+import sys
 
-if __name__ == "__main__":
-    main()
+def main():
+    n, q = map(int, sys.stdin.readline().split())
+    a = list(map(int, sys.stdin.readline().split()))
+    counts = [0] * 31
+    for num in a:
+        d = num.bit_length() - 1
+        counts[d] += 1
+    for _ in range(q):
+        b = int(sys.stdin.readline())
+        remaining = b
+        coins = 0
+        for d in range(30, -1, -1):
+            if remaining <= 0:
+                break
+            current = 1 << d
+            if current > remaining:
+                contin
