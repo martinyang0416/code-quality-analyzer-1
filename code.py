@@ -1,19 +1,30 @@
 import sys
-from sys import stdin
 from collections import deque
 
-def rotate_right_one(bitmask, N):
-    return ( (bitmask >> 1) | ( (bitmask & 1) << (N-1) ) ) & ((1 << N) -1)
+def rotate_right(s, N):
+    last = s & 1
+    s >>= 1
+    s |= last << (N - 1)
+    return s
 
 def main():
-    T, N = map(int, stdin.readline().split())
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    N = int(input[idx])
+    idx += 1
 
     for _ in range(T):
-        lights_str, switches_str = stdin.readline().split().strip().split()
-        
-        # Compute initial light bitmask (L0)
-        L0 = 0
-        for i in range(N):
-            if lights_str[i] == '1':
-                L0 += (1 << i)
-    
+        L_str = input[idx]
+        S_str = input[idx+1]
+        idx +=2
+
+        L_mask = int(L_str, 2)
+        S_mask = int(S_str, 2)
+        target = L_mask
+
+        visited = {}
+        q = deque()
+
+     
