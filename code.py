@@ -1,25 +1,22 @@
 import bisect
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    A = int(input[idx]); idx +=1
-    B = int(input[idx]); idx +=1
-    T = int(input[idx]); idx +=1
+def putaway(A, B, T, X, Y, W, S):
+    if T == 0:
+        return 0
 
-    X = []
+    # Compute eligibility arrays
+    eligible_weak = [False] * T
+    eligible_small = [False] * T
+
+    # Compute eligible_weak
     if A > 0:
-        X = list(map(int, input[idx:idx+A]))
-        idx += A
-    Y = []
+        X_sorted = sorted(X)
+        for i in range(T):
+            w = W[i]
+            pos = bisect.bisect_right(X_sorted, w)
+            if pos < len(X_sorted):
+                eligible_weak[i] = True
+    # Compute eligible_small
     if B > 0:
-        Y = list(map(int, input[idx:idx+B]))
-        idx += B
-
-    W = []
-    S = []
-    for _ in range(T):
-        w = int(input[idx]); idx +=1
-        s = int(input[idx]); idx +=1
-        W.appen
+        Y_sorted = sorted(Y)
+ 
