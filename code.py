@@ -1,20 +1,17 @@
-class TrieNode:
-    def __init__(self):
-        self.children = [None, None]
-
-def findMaximumXOR(nums):
-    if len(nums) < 2:
-        return 0
-    max_xor = 0
-    root = TrieNode()
-    # Insert first number into trie
-    num = nums[0]
-    current = root
-    for i in range(30, -1, -1):
-        bit = (num >> i) & 1
-        if not current.children[bit]:
-            current.children[bit] = TrieNode()
-        current = current.children[bit]
-    # Process remaining numbers
-    for num in nums[1:]:
-   
+def decodeString(s: str) -> str:
+    stack = []
+    current_str = ''
+    current_num = 0
+    for c in s:
+        if c.isdigit():
+            current_num = current_num * 10 + int(c)
+        elif c == '[':
+            stack.append((current_str, current_num))
+            current_str = ''
+            current_num = 0
+        elif c == ']':
+            prev_str, num = stack.pop()
+            current_str = prev_str + current_str * num
+        else:
+            current_str += c
+    return current_str
