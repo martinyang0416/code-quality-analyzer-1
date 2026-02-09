@@ -1,17 +1,19 @@
+import numpy as np
+
 def main():
     import sys
-    s = sys.stdin.readline().strip()
-    N = len(s)
-    T = ['b', 'e', 's', 's', 'i', 'e']  # The target "bessie" characters
-
-    count = [0] * 7
-    count[0] = 1  # base case: 1 way to form 0 characters
-    sum_s = [0] * 7  # sum_s[0] is 0 since start is undefined for empty subsequence
-    total = 0
-
-    for pos in range(N):
-        c = s[pos]
-        prev_count = count.copy()
-        prev_sum = sum_s.copy()
-
-        # Update the count and sum_s arrays for each possib
+    N, K, T = map(int, sys.stdin.readline().split())
+    A = list(map(int, sys.stdin.readline().split()))
+    
+    # Compute count array for residues mod N
+    count = [0] * N
+    for r in range(N):
+        if r == 0:
+            count[r] = T // N
+        else:
+            if r > T:
+                count[r] = 0
+            else:
+                count[r] = (T - r) // N + 1
+    
+    # Compute frequency array for each residue mod N of the initial activ
