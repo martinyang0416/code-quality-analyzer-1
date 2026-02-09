@@ -1,21 +1,25 @@
-import sys
-from collections import deque
-
-def main():
-    n, m = map(int, sys.stdin.readline().split())
-    adjacency = [[] for _ in range(n + 1)]
-    in_degree = [0] * (n + 1)
+def count_subsequences():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
     
-    for _ in range(m):
-        v, u, w = map(int, sys.stdin.readline().split())
-        adjacency[v].append((u, w))
-        in_degree[u] += 1
+    N = int(data[0])
+    Q = int(data[1])
+    a = list(map(int, data[2:2+N]))
     
-    queue = deque()
-    for i in range(1, n + 1):
-        if in_degree[i] == 0:
-            queue.append(i)
+    prefix = [0] * (N + 1)
+    for i in range(1, N+1):
+        prefix[i] = prefix[i-1] + a[i-1]
     
-    topo_order = []
-    while queue:
-        u = queue.pop
+    A = [0] * (N + 1)
+    for j in range(N+1):
+        A[j] = prefix[j] - j
+    
+    freq_map = {}
+    current_mod = A[0] % Q
+    freq_map[current_mod] = 1
+    
+    result = 0
+    
+    for j in range(1, N+1):
+       
