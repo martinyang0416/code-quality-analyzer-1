@@ -1,21 +1,16 @@
-def strongPasswordChecker(s):
-    n = len(s)
-    missing_types = 3
-    if any(c.islower() for c in s):
-        missing_types -= 1
-    if any(c.isupper() for c in s):
-        missing_types -= 1
-    if any(c.isdigit() for c in s):
-        missing_types -= 1
-
-    # Compute runs of characters
-    runs = []
-    if n > 0:
-        current = s[0]
-        count = 1
-        for c in s[1:]:
-            if c == current:
-                count += 1
+def shortestCommonSupersequence(str1: str, str2: str) -> str:
+    m, n = len(str1), len(str2)
+    dp = [[0] * (n + 1) for _ in range(m + 1)]
+    
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if str1[i-1] == str2[j-1]:
+                dp[i][j] = dp[i-1][j-1] + 1
             else:
-                runs.append(count)
-        
+                dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    
+    i, j = m, n
+    result = []
+    while i > 0 and j > 0:
+        if str1[i-1] == str2[j-1]:
+            result.append(str1[i-1]
