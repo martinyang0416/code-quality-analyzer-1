@@ -1,22 +1,19 @@
-import bisect
+from collections import deque
 
-def putaway(A, B, T, X, Y, W, S):
-    if T == 0:
-        return 0
+class Edge:
+    def __init__(self, to, rev, capacity):
+        self.to = to
+        self.rev = rev
+        self.capacity = capacity
 
-    # Compute eligibility arrays
-    eligible_weak = [False] * T
-    eligible_small = [False] * T
-
-    # Compute eligible_weak
-    if A > 0:
-        X_sorted = sorted(X)
-        for i in range(T):
-            w = W[i]
-            pos = bisect.bisect_right(X_sorted, w)
-            if pos < len(X_sorted):
-                eligible_weak[i] = True
-    # Compute eligible_small
-    if B > 0:
-        Y_sorted = sorted(Y)
- 
+class Dinic:
+    def __init__(self, n):
+        self.size = n
+        self.graph = [[] for _ in range(n)]
+    
+    def add_edge(self, fr, to, cap):
+        forward = Edge(to, len(self.graph[to]), cap)
+        backward = Edge(fr, len(self.graph[fr]), 0)
+        self.graph[fr].append(forward)
+        self.graph[to].append(backward)
+    
