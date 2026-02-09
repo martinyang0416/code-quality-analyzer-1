@@ -1,17 +1,20 @@
-import sys
-from collections import defaultdict
+import math
 
-def main():
-    sys.setrecursionlimit(1 << 25)
-    n, m = map(int, sys.stdin.readline().split())
-    edges = []
-    adj = [[] for _ in range(n + 1)]  # 1-based indexing
-    for idx in range(1, m + 1):
-        u, v = map(int, sys.stdin.readline().split())
-        edges.append((u, v))
-        adj[u].append((v, idx))
-        adj[v].append((u, idx))
+n, L, R = map(int, input().split())
+MOD = 10**9 + 7
 
-    # Tarjan's algorithm to find bridges iteratively
-    disc = [-1] * (n + 1)
-    low = [-1] * (n + 1)
+# Compute derangements D[0..n]
+D = [0] * (n + 1)
+D[0] = 1
+if n >= 1:
+    D[1] = 0
+for i in range(2, n + 1):
+    D[i] = (i - 1) * (D[i - 1] + D[i - 2])
+
+sum_total = 0
+for x in range(L, R + 1):
+    sum_total += math.comb(n, x) * D[x]
+
+fact_n = math.factorial(n)
+result = (sum_total * pow(fact_n, MOD - 2, MOD)) % MOD
+print(result)
