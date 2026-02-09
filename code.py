@@ -1,14 +1,15 @@
-n = int(input())
-arr = list(map(int, input().split()))
-arr.sort()
-current_max = 0
+n, m = map(int, input().split())
 
-for num in arr:
-    if num == 0:
-        continue
-    if num > current_max + 1:
-        print(current_max + 1)
-        exit()
-    current_max += num
+max_a = -float('inf')
+for _ in range(n):
+    x, y = map(int, input().split())
+    if x > max_a:
+        max_a = x
 
-print(current_max + 1)
+min_b = float('inf')
+for _ in range(m):
+    x, y = map(int, input().split())
+    if x < min_b:
+        min_b = x
+
+print("YES" if max_a < min_b else "NO")
