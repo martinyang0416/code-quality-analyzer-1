@@ -1,20 +1,26 @@
-def putaway(A, B, T, X, Y, W, S):
-    can_weak_list = [False] * T
-    can_small_list = [False] * T
+MOD = 10**9 + 7
 
-    for i in range(T):
-        w = W[i]
-        s = S[i]
-        can_weak = False
-        if A > 0:
-            for x in X:
-                if x > w:
-                    can_weak = True
-                    break
-        can_small = False
-        if B > 0:
-            for y in Y:
-                if y > s:
-                    can_small = True
-                    break
-        can_weak_list[i] = can_
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx +=1
+    M = int(input[idx])
+    idx +=1
+    
+    masks = []
+    for _ in range(M):
+        s = input[idx]
+        idx +=1
+        masks.append(s)
+    
+    # Create bitmask for each problem
+    problem_masks = []
+    for i in range(N):
+        bm = 0
+        for j in range(M):
+            if masks[j][i] == 'H':
+                bm |= 1 << j
+        problem_masks.append(bm)
+ 
