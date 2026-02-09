@@ -1,22 +1,20 @@
-import math
-
-def nthUglyNumber(n: int, a: int, b: int, c: int) -> int:
-    def lcm(x, y):
-        return x * y // math.gcd(x, y)
+def numDecodings(s: str) -> int:
+    n = len(s)
+    dp = [0] * (n + 1)
+    dp[0] = 1  # empty string has one way to decode
     
-    ab = lcm(a, b)
-    ac = lcm(a, c)
-    bc = lcm(b, c)
-    abc = lcm(ab, c)
+    # Handle first character
+    dp[1] = 1 if s[0] != '0' else 0
     
-    left, right = 1, 2 * 10**9
+    for i in range(2, n + 1):
+        # Check single digit
+        current_digit = s[i-1]
+        if current_digit != '0':
+            dp[i] += dp[i-1]
+        
+        # Check two digits
+        two_digit = int(s[i-2] + s[i-1])
+        if 10 <= two_digit <= 26:
+            dp[i] += dp[i-2]
     
-    def count(x):
-        return x // a + x // b + x // c - x // ab - x // ac - x // bc + x // abc
-    
-    while left < right:
-        mid = (left + right) // 2
-        if count(mid) < n:
-            left = mid + 1
-        else:
-            right
+    r
