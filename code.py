@@ -1,16 +1,17 @@
-c, v0, v1, a, l = map(int, input().split())
+import sys
+from collections import defaultdict
 
-if v0 >= c:
-    print(1)
-else:
-    days = 1
-    total = v0
-    while True:
-        days += 1
-        speed = v0 + a * (days - 1)
-        if speed > v1:
-            speed = v1
-        total += speed - l
-        if total >= c:
-            print(days)
-            break
+def main():
+    sys.setrecursionlimit(1 << 25)
+    n, m = map(int, sys.stdin.readline().split())
+    edges = []
+    adj = [[] for _ in range(n + 1)]  # 1-based indexing
+    for idx in range(1, m + 1):
+        u, v = map(int, sys.stdin.readline().split())
+        edges.append((u, v))
+        adj[u].append((v, idx))
+        adj[v].append((u, idx))
+
+    # Tarjan's algorithm to find bridges iteratively
+    disc = [-1] * (n + 1)
+    low = [-1] * (n + 1)
