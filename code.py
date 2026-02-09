@@ -1,12 +1,19 @@
-def solution(l1):
-    l1.sort()
-    l1.reverse()
-    c_out=""
-    for x in l1:
-        if x==l1[0]:
-            c_out+=x
-    return c_out
-def answer():
-    l1 = list(input())
-    print(solution(l1))
-answer()
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
+
+import builtins
+import re
