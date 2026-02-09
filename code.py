@@ -1,20 +1,21 @@
-import bisect
-
 def putaway(A, B, T, X, Y, W, S):
-    # Precompute can_weak and can_small for each toy.
-    X_sorted = sorted(X) if A > 0 else []
-    Y_sorted = sorted(Y) if B > 0 else []
+    max_X = -float('inf')
+    if A > 0:
+        max_X = max(X)
+    max_Y = -float('inf')
+    if B > 0:
+        max_Y = max(Y)
     
-    can_weak = []
-    can_small = []
+    required_S = 0  # must go to weak robots
+    required_T = 0  # must go to small robots
+    remaining = 0   # can go to either
+    possible = True
+
     for i in range(T):
         w = W[i]
         s = S[i]
-        cw = False
-        if A > 0:
-            idx = bisect.bisect_right(X_sorted, w)
-            if idx < len(X_sorted):
-                cw = True
-        cs = False
-        if B > 0:
-            idx = bisect.bi
+        can_weak = False
+        can_small = False
+        if A > 0 and w < max_X:
+            can_weak = True
+        if B > 0
