@@ -1,17 +1,13 @@
-def is_power_of_two(x):
-    if x == 0:
-        return False
-    return (x & (x - 1)) == 0
-
 n = int(input())
-nums = list(map(int, input().split()))
+matrix = []
+for _ in range(n):
+    row = list(map(int, input().split()))
+    matrix.append(row)
 
-count_power = 0
-for num in nums:
-    if is_power_of_two(num):
-        count_power += 1
+sum_total = 0
+for i in range(n):
+    for j in range(n):
+        if i == 0 or i == n-1 or j == 0 or j == n-1 or i == j or i + j == n-1:
+            sum_total += matrix[i][j]
 
-if count_power < 2:
-    print(n)
-else:
-    print(n - count_power)
+print(sum_total)
