@@ -1,23 +1,19 @@
-import heapq
-
 def main():
     import sys
-    input = sys.stdin.read().split()
+    input = sys.stdin.read
+    data = input().split()
     idx = 0
-    T = int(input[idx])
+    T = int(data[idx])
     idx += 1
     for _ in range(T):
-        M = int(input[idx])
+        N = int(data[idx])
         idx += 1
-        sizes = list(map(int, input[idx:idx+M]))
-        idx += M
-        
-        heap = []
-        for s in sizes:
-            heapq.heappush(heap, s)
-        
-        total = 0
-        while len(heap) > 1:
-            a = heapq.heappop(heap)
-            b = heapq.heappop(heap)
-            merged = a +
+        temps = list(map(int, data[idx:idx+N]))
+        idx += N
+        if N <= 1:
+            print(0)
+        else:
+            print(max(temps) - min(temps))
+    
+if __name__ == "__main__":
+    main()
