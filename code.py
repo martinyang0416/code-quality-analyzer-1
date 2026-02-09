@@ -1,17 +1,16 @@
-def bagOfTokensScore(tokens, P):
-    tokens.sort()
-    max_points = current_points = 0
-    left, right = 0, len(tokens) - 1
-    while left <= right:
-        if P >= tokens[left]:
-            P -= tokens[left]
-            current_points += 1
-            max_points = max(max_points, current_points)
-            left += 1
-        elif current_points > 0:
-            P += tokens[right]
-            current_points -= 1
-            right -= 1
-        else:
-            break
-    return max_points
+def minCost(n, cuts):
+    cuts_sorted = sorted(cuts)
+    sorted_cuts = [0] + cuts_sorted + [n]
+    m = len(sorted_cuts)
+    dp = [[0] * m for _ in range(m)]
+    
+    for l in range(2, m):
+        for i in range(m - l):
+            j = i + l
+            dp[i][j] = float('inf')
+            for k in range(i + 1, j):
+                if dp[i][k] + dp[k][j] < dp[i][j]:
+                    dp[i][j] = dp[i][k] + dp[k][j]
+            dp[i][j] += sorted_cuts[j] - sorted_cuts[i]
+    
+    return dp[0][m-1]
