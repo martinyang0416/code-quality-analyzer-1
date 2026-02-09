@@ -1,12 +1,11 @@
-import math
-
-t = int(input())
-for _ in range(t):
-    n = int(input())
-    s = 8 * n + 1
-    k = (math.isqrt(s) - 1) // 2
-    t_k = k * (k + 1) // 2
-    if t_k == n:
+n = int(input())
+for _ in range(n):
+    word = input().strip()
+    count_a = word.count('a')
+    if count_a == 0:
         print(0)
     else:
-        print(n - t_k)
+        total = 2 ** len(word)
+        non_a = len(word) - count_a
+        subtract = 2 ** non_a
+        print(total - subtract)
