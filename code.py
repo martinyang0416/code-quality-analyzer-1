@@ -1,21 +1,25 @@
-def putaway(A, B, T, X, Y, W, S):
-    max_X = -float('inf')
-    if A > 0:
-        max_X = max(X)
-    max_Y = -float('inf')
-    if B > 0:
-        max_Y = max(Y)
-    
-    required_S = 0  # must go to weak robots
-    required_T = 0  # must go to small robots
-    remaining = 0   # can go to either
-    possible = True
+import bisect
 
-    for i in range(T):
-        w = W[i]
-        s = S[i]
-        can_weak = False
-        can_small = False
-        if A > 0 and w < max_X:
-            can_weak = True
-        if B > 0
+def main():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    A = int(input[idx]); idx +=1
+    B = int(input[idx]); idx +=1
+    T = int(input[idx]); idx +=1
+
+    X = []
+    if A > 0:
+        X = list(map(int, input[idx:idx+A]))
+        idx += A
+    Y = []
+    if B > 0:
+        Y = list(map(int, input[idx:idx+B]))
+        idx += B
+
+    W = []
+    S = []
+    for _ in range(T):
+        w = int(input[idx]); idx +=1
+        s = int(input[idx]); idx +=1
+        W.appen
