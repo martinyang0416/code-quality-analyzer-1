@@ -1,11 +1,20 @@
-n = int(input())
-for _ in range(n):
-    word = input().strip()
-    count_a = word.count('a')
-    if count_a == 0:
-        print(0)
-    else:
-        total = 2 ** len(word)
-        non_a = len(word) - count_a
-        subtract = 2 ** non_a
-        print(total - subtract)
+import bisect
+import sys
+
+def main():
+    input = sys.stdin.read().split()
+    ptr = 0
+    T = int(input[ptr])
+    ptr += 1
+    for _ in range(T):
+        S = input[ptr]
+        ptr += 1
+        N = len(S)
+        opens = [0] * (N + 1)
+        closes = [0] * (N + 1)
+        open_positions = []
+        for i in range(N):
+            opens[i+1] = opens[i] + (1 if S[i] == '(' else 0)
+            closes[i+1] = closes[i] + (1 if S[i] == ')' else 0)
+            if S[i] == '(':
+                open_pos
