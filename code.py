@@ -1,20 +1,25 @@
-h, w = map(int, input().split())
-grid = [list(map(int, input().split())) for _ in range(h)]
+import sys
 
-if h == 0:
-    print(0)
-    exit()
+def compute_max(arr, k):
+    max_p = -float('inf')
+    n = len(arr)
+    for i in range(n - k + 1):
+        product = 1
+        for j in range(i, i + k):
+            product *= arr[j]
+        if product > max_p:
+            max_p = product
+    return max_p
 
-prev_row = grid[0]
-
-for i in range(1, h):
-    current_row = []
-    for j in range(w):
-        max_prev = 0
-        # Check possible positions from the previous row
-        for k in [j-1, j, j+1]:
-            if 0 <= k < w:
-                if prev_row[k] > max_prev:
-                    max_prev = prev_row[k]
-        current_row.append(max_prev + grid[i][j])
-    prev_row
+for line in sys.stdin:
+    line = line.strip()
+    if not line:
+        continue
+    parts = line.split()
+    if len(parts) < 2:
+        continue
+    n, k = map(int, parts)
+    if n == 0 and k == 0:
+        break
+    cards = []
+   
