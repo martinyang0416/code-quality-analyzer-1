@@ -1,11 +1,3 @@
-def main():
-    import sys
-    N, M = map(int, sys.stdin.readline().split())
-    c = bin(N).count('1')
-    if M < c or M > N:
-        print("NO")
-    else:
-        print("YES")
-
-if __name__ == "__main__":
-    main()
+a, b = map(int, input().split())
+reversed_b = int(str(b)[::-1])
+print(a + reversed_b)
