@@ -1,21 +1,19 @@
-def get_res(a, b, c, d):
-    if a==0 or b==0 or c==0:
-        l = [x%2 for x in [a,b,c,d]]
-        odds = sum(l)
-        if odds > 1:
-            return 'No'
-        else:
-            return 'Yes'
-    else:
-        l = [x%2 for x in [a,b,c,d]]
-        odds = sum(l)
-        if odds == 2:
-            return 'No'
-        else:
-            return 'Yes'
+import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-
-n = int(input())
-for _ in range(n):
-    lis = list(map(lambda x: int(x), input().split()))
-    print(get_res(*lis))
+import builtins
+import re
