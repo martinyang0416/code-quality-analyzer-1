@@ -1,18 +1,26 @@
 import sys
+from collections import defaultdict
 
 def main():
-    m = int(sys.stdin.readline())
-    b = list(map(int, sys.stdin.readline().split()))
-    p = int(sys.stdin.readline())
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    p = int(data[idx])
+    idx += 1
+    b = int(data[idx])
+    idx += 1
+
+    blocked = set()
+    for _ in range(b):
+        x = int(data[idx])
+        idx += 1
+        y = int(data[idx])
+        idx += 1
+        blocked.add((x, y))
     
-    bonuses = dict()  # key: (r, v), value: max c
-    
-    for _ in range(p):
-        rj, cj, vj = map(int, sys.stdin.readline().split())
-        rj -= 1  # zero-based index for resources
-        if vj == 0:
-            if (rj, cj) in bonuses:
-                del bonuses[(rj, cj)]
-        else:
-            key = (rj, vj)
-            if key in bonus
+    # Check if start or end is blocked
+    start = (p, p)
+    end = (1, 1)
+    if start in blocked or end in blocked:
+        print(-1)
+ 
