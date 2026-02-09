@@ -1,21 +1,22 @@
-import bisect
-
 def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    n = int(input[idx]); idx +=1
-    x1 = int(input[idx]); idx +=1
-    y1 = int(input[idx]); idx +=1
-    x2 = int(input[idx]); idx +=1
-    y2 = int(input[idx]); idx +=1
-
-    trees = []
-    for _ in range(n):
-        x = int(input[idx]); idx +=1
-        y = int(input[idx]); idx +=1
-        d1 = (x - x1)**2 + (y - y1)**2
-        d2 = (x - x2)**2 + (y - y2)**2
-        trees.append((d1, d2))
+    input = sys.stdin.read
+    data = input().split()
     
-    # Sort tr
+    index = 0
+    T = int(data[index])
+    index += 1
+    for _ in range(T):
+        n = int(data[index])
+        m = int(data[index + 1])
+        index += 2
+        
+        grid = []
+        for i in range(n):
+            line = data[index]
+            index += 1
+            grid.append([int(c) for c in line])
+        
+        if grid[0][0] == 1 or grid[n-1][m-1] == 1:
+            print(0)
+            continu
