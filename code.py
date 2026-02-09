@@ -1,9 +1,11 @@
-def solve():
-    N, M = map(int, input().split())
-    cnt = bin(N).count('1')
-    if M < cnt or (N - M) % 2 != 0:
+def main():
+    import sys
+    N, M = map(int, sys.stdin.readline().split())
+    c = bin(N).count('1')
+    if M < c or M > N:
         print("NO")
     else:
         print("YES")
 
-solve()
+if __name__ == "__main__":
+    main()
