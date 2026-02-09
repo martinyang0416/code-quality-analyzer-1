@@ -1,22 +1,23 @@
-import sys
-from collections import deque
+import math
 
-n, m = map(int, sys.stdin.readline().split())
-adj = [[] for _ in range(n + 1)]
-for _ in range(m):
-    u, v = map(int, sys.stdin.readline().split())
-    adj[u].append(v)
-    adj[v].append(u)
+n = int(input())
+l = list(map(int, input().split()))
+c = list(map(int, input().split()))
 
-distance = [[-1] * (n + 1) for _ in range(n + 1)]
-parent = [[None] * (n + 1) for _ in range(n + 1)]
+dp = {}
 
-start_bob = 1
-start_alex = n
-distance[start_bob][start_alex] = 0
-q = deque([(start_bob, start_alex)])
-
-found = False
-while q:
-    u, v = q.popleft()
-    if u == n and
+for i in range(n):
+    li = l[i]
+    ci = c[i]
+    current_entries = list(dp.items())
+    for g, cost in current_entries:
+        new_g = math.gcd(g, li)
+        new_cost = cost + ci
+        if new_g in dp:
+            if new_cost < dp[new_g]:
+                dp[new_g] = new_cost
+        else:
+            dp[new_g] = new_cost
+    if li in dp:
+        if ci < dp[li]:
+            dp[li] 
