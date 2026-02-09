@@ -1,20 +1,16 @@
-t = int(input())
-for _ in range(t):
-    s, c = input().split()
-    if s < c:
-        print(s)
+n = int(input())
+a = list(map(int, input().split()))
+targets = []
+row_usage = {}  # Track the number of targets per row
+col_usage = {}  # Track the number of targets per column
+
+# For the given a_i values, we need to construct the targets
+# We'll process each column from left to right (0 to n-1)
+
+for i in range(n):
+    ai = a[i]
+    if ai == 0:
         continue
-    s_list = list(s)
-    n = len(s_list)
-    found = False
-    for i in range(n):
-        min_char = s_list[i]
-        min_pos = -1
-        for j in range(i + 1, n):
-            if s_list[j] < min_char:
-                min_char = s_list[j]
-                min_pos = j
-            elif s_list[j] == min_char:
-                min_pos = j
-        if min_pos != -1 and min_char < s_list[i]:
-  
+    elif ai == 1:
+        # Find a row where this column can be placed without any target to the east in the same row
+        # Use row 
