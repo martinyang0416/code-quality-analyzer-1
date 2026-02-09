@@ -1,25 +1,24 @@
-import bisect
+import sys
 
 def main():
-    import sys
     input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    Q = int(input[idx+1])
-    idx += 2
+    s = list(input[0])
+    U = int(input[1])
+    updates = []
+    pos = 2
+    for _ in range(U):
+        p = int(input[pos]) - 1  # convert to 0-based index
+        c = input[pos+1]
+        updates.append((p, c))
+        pos += 2
 
-    s = input[idx]
-    idx +=1
+    n = len(s)
+    T = ['b', 'e', 's', 's', 'i', 'e']
 
-    L_indices = []
-    R_indices = []
-    for i in range(len(s)):
-        c = s[i]
-        if c == 'L':
-            L_indices.append(i+1)  # 1-based
-        else:
-            R_indices.append(i+1)
-
-    # tractor i (1-based) has L = L_indices[i-1], R = R_indices[i-1]
-    # precompute the L and R arrays
-    ℓ = L_
+    def compute_total_and_prefix(s):
+        n = len(s)
+        current = [0] * 6
+        current[0] = 1
+        total = []
+        for char in s:
+      
