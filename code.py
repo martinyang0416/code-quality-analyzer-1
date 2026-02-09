@@ -1,3 +1,6 @@
 a = int(input())
-sum_digits = a if a < 10 else (a // 10 + a % 10)
-print("YES" if sum_digits % 5 == 0 else "NO")
+sum_digits = sum(int(d) for d in str(a))
+if a % 2 == 1 and sum_digits % 2 == 0:
+    print(1)
+else:
+    print(0)
