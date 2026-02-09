@@ -1,19 +1,15 @@
-from collections import deque
-
-def numIslands(grid):
-    if not grid or len(grid) == 0:
+def carFleet(target, position, speed):
+    if not position:
         return 0
-    grid = [list(row) for row in grid]
-    rows = len(grid)
-    cols = len(grid[0])
-    count = 0
     
-    for i in range(rows):
-        for j in range(cols):
-            if grid[i][j] == '1':
-                count += 1
-                queue = deque([(i, j)])
-                grid[i][j] = '0'
-                while queue:
-                    x, y = queue.popleft()
-                    for dx, dy
+    cars = sorted(zip(position, speed), key=lambda x: -x[0])
+    max_time = 0
+    fleet_count = 0
+    
+    for p, s in cars:
+        time = (target - p) / s
+        if time > max_time:
+            fleet_count += 1
+            max_time = time
+    
+    return fleet_count
