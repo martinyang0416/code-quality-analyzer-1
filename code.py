@@ -1,9 +1,20 @@
-import math
-
-T = int(input())
-for _ in range(T):
-    n = int(input())
-    m = 2 * n
-    angle = math.pi / (2 * m)
-    result = 1.0 / (2 * math.sin(angle))
-    print("{0:.9f}".format(result))
+def solve():
+    import sys
+    input = sys.stdin.read().split()
+    idx = 0
+    t = int(input[idx])
+    idx += 1
+    for _ in range(t):
+        n = int(input[idx])
+        idx += 1
+        a = list(map(int, input[idx:idx+n]))
+        idx += n
+        depth = [0] * n
+        
+        def helper(start, end, current_depth):
+            if start > end:
+                return
+            max_val = -1
+            max_idx = start
+            for i in range(start, end + 1):
+                if a[i] > ma
