@@ -1,24 +1,21 @@
 import sys
+from collections import deque
 
 def main():
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    t = int(data[idx])
-    idx += 1
+    n, m = map(int, sys.stdin.readline().split())
+    adjacency = [[] for _ in range(n + 1)]
+    in_degree = [0] * (n + 1)
     
-    for _ in range(t):
-        n = int(data[idx])
-        m = int(data[idx + 1])
-        idx += 2
-        grid = []
-        for i in range(n):
-            grid.append(data[idx].strip())
-            idx += 1
-        
-        # Precompute right[i][j]
-        right = [[0] * m for _ in range(n)]
-        for i in range(n):
-            j = 0
-            while j < m:
-      
+    for _ in range(m):
+        v, u, w = map(int, sys.stdin.readline().split())
+        adjacency[v].append((u, w))
+        in_degree[u] += 1
+    
+    queue = deque()
+    for i in range(1, n + 1):
+        if in_degree[i] == 0:
+            queue.append(i)
+    
+    topo_order = []
+    while queue:
+        u = queue.pop
