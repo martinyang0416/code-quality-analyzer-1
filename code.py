@@ -1,15 +1,18 @@
-def minIncrementForUnique(A):
-    A.sort()
-    moves = 0
-    if len(A) < 2:
-        return 0
-    prev = A[0]
-    for i in range(1, len(A)):
-        current = A[i]
-        if current <= prev:
-            required = prev + 1
-            moves += required - current
-            prev = required
-        else:
-            prev = current
-    return moves
+def shortestPalindrome(s):
+    def compute_lps(s):
+        n = len(s)
+        lps = [0] * n
+        length = 0  # Length of the previous longest prefix suffix
+        for i in range(1, n):
+            while length > 0 and s[i] != s[length]:
+                length = lps[length - 1]
+            if s[i] == s[length]:
+                length += 1
+                lps[i] = length
+            else:
+                lps[i] = 0
+        return lps
+
+    rev_s = s[::-1]
+    t = s + '#' + rev_s
+    lps = compu
