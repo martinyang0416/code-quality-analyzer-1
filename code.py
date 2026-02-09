@@ -1,20 +1,18 @@
-m, n = map(int, input().split())
-matrix = []
-for _ in range(m):
-    row = list(map(int, input().split()))
-    matrix.append(row)
+MOD = 998244353
+max_n = 100
 
-# Flip rows where the first element is 0
-for i in range(m):
-    if matrix[i][0] == 0:
-        for j in range(n):
-            matrix[i][j] ^= 1
+# Precompute Stirling numbers of the second kind S(n, m)
+S = [[0] * (max_n + 1) for _ in range(max_n + 1)]
+S[0][0] = 1
+for n in range(1, max_n + 1):
+    for m in range(1, n + 1):
+        S[n][m] = (S[n-1][m-1] + m * S[n-1][m]) % MOD
 
-# Check each column (from 1 to n-1) and flip if needed
-for j in range(1, n):
-    cnt = sum(matrix[i][j] for i in range(m))
-    if cnt < m - cnt:
-        for i in range(m):
-            matrix[i][j] ^= 1
+# Precompute T(n, m): partitions into m subsets each of size >=2
+T = [[0] * (max_n + 1) for _ in range(max_n + 1)]
+# Initialize T[n][1] for n >= 2
+for n in range(2, max_n + 1):
+    T[n][1] = 1
 
-# Calculate the total s
+for m in range(2, max_n + 1):
+    for n in 
