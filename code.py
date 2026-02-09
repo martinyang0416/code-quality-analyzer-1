@@ -1,20 +1,22 @@
-s = input().strip()
-palindromes = set()
-n = len(s)
-
-for i in range(n):
-    # Check for odd length palindromes centered at i
-    l, r = i, i
-    while l >= 0 and r < n and s[l] == s[r]:
-        palindromes.add(s[l:r+1])
-        l -= 1
-        r += 1
-    
-    # Check for even length palindromes centered between i and i+1
-    l, r = i, i + 1
-    while l >= 0 and r < n and s[l] == s[r]:
-        palindromes.add(s[l:r+1])
-        l -= 1
-        r += 1
-
-print(len(palindromes))
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+    idx = 0
+    q = int(data[idx])
+    idx += 1
+    for _ in range(q):
+        m, p = int(data[idx]), int(data[idx+1])
+        idx +=2
+        b = list(map(int, data[idx:idx+m]))
+        idx +=m
+        
+        # Compute good array
+        n = m-1
+        good = [0] * n
+        for i in range(n):
+            if b[i] > 3 * b[i+1]:
+                good[i] = 1
+        
+        # Compute prefix sum
+        prefix = [0]
