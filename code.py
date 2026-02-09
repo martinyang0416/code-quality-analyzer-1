@@ -1,18 +1,29 @@
-def shortestPalindrome(s):
-    def compute_lps(s):
-        n = len(s)
-        lps = [0] * n
-        length = 0  # Length of the previous longest prefix suffix
-        for i in range(1, n):
-            while length > 0 and s[i] != s[length]:
-                length = lps[length - 1]
-            if s[i] == s[length]:
-                length += 1
-                lps[i] = length
-            else:
-                lps[i] = 0
-        return lps
+def myAtoi(s: str) -> int:
+    INT_MIN = -2**31
+    INT_MAX = 2**31 - 1
 
-    rev_s = s[::-1]
-    t = s + '#' + rev_s
-    lps = compu
+    i = 0
+    n = len(s)
+    
+    # Skip leading whitespaces
+    while i < n and s[i] == ' ':
+        i += 1
+    
+    if i >= n:
+        return 0
+    
+    # Determine sign
+    sign = 1
+    if s[i] in '+-':
+        sign = -1 if s[i] == '-' else 1
+        i += 1
+    
+    # Collect digits
+    digits = []
+    while i < n and s[i].isdigit():
+        digits.append(s[i])
+        i += 1
+    
+    if not digits:
+        return 0
+    
