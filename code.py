@@ -1,23 +1,24 @@
 import sys
+from sys import stdin
 sys.setrecursionlimit(1 << 25)
 
 def main():
-    N = int(sys.stdin.readline())
-    s = sys.stdin.readline().strip()
-    cowfolk = [i+1 for i in range(N) if s[i] == '1']
-    M = len(cowfolk)
+    N = int(stdin.readline())
+    s = stdin.readline().strip()
+    required = []
+    for i in range(N):
+        if s[i] == '1':
+            required.append(i)
+    M = len(required)
     if M == 0:
-        for _ in range(N):
-            print(0)
+        print(0)
         return
 
-    edges = [[] for _ in range(N+1)]
+    # Build adjacency list
+    adj = [[] for _ in range(N)]
     for _ in range(N-1):
-        a, b = map(int, sys.stdin.readline().split())
-        edges[a].append(b)
-        edges[b].append(a)
-
-    root = cowfolk[0]
-
-    parent = [0]*(N+1)
+        a, b = map(int, stdin.readline().split())
+        a -= 1
+        b -= 1
+        adj[a].append(b)
     
