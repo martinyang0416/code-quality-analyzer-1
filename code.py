@@ -1,16 +1,19 @@
-from collections import Counter
-
-def originalDigits(s):
-    freq = Counter(s)
-    digits = [0] * 10
-    processing_order = [
-        (0, 'z', ['z', 'e', 'r', 'o']),
-        (2, 'w', ['t', 'w', 'o']),
-        (4, 'u', ['f', 'o', 'u', 'r']),
-        (6, 'x', ['s', 'i', 'x']),
-        (8, 'g', ['e', 'i', 'g', 'h', 't']),
-        (3, 'h', ['t', 'h', 'r', 'e', 'e']),
-        (5, 'f', ['f', 'i', 'v', 'e']),
-        (7, 's', ['s', 'e', 'v', 'e', 'n']),
-        (1, 'o', ['o', 'n', 'e']),
-        (9, 'i'
+def maxLength(arr):
+    # Preprocess to filter out strings with duplicate characters
+    unique = []
+    for s in arr:
+        if len(set(s)) == len(s):
+            unique.append(s)
+    
+    # Generate masks and lengths
+    masks = []
+    for s in unique:
+        mask = 0
+        for c in s:
+            mask |= 1 << (ord(c) - ord('a'))
+        masks.append( (mask, len(s)) )
+    
+    # Dynamic programming to find maximum length
+    dp = {0: 0}  # mask: max_length
+    for mask, length in masks:
+  
