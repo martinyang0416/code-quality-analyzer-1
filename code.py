@@ -1,3 +1,4 @@
+import sys
 from collections import deque
 
 class Edge:
@@ -15,5 +16,4 @@ class Dinic:
         forward = Edge(to, len(self.graph[to]), cap)
         backward = Edge(fr, len(self.graph[fr]), 0)
         self.graph[fr].append(forward)
-        self.graph[to].append(backward)
-    
+        self.graph[to].append(bac
