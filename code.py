@@ -1,18 +1,22 @@
 import sys
 from collections import deque
 
-def main():
-    sys.setrecursionlimit(1 << 25)
-    n = int(sys.stdin.readline())
-    edges = []
-    adj = [[] for _ in range(n+1)]
-    initial_t = [0] * (n)  # 1-based to n-1
-    for i in range(n-1):
-        u, v, t = map(int, sys.stdin.readline().split())
-        edges.append((u, v))
-        adj[u].append((v, i+1))
-        adj[v].append((u, i+1))
-        initial_t[i+1] = t
+n, m = map(int, sys.stdin.readline().split())
+adj = [[] for _ in range(n + 1)]
+for _ in range(m):
+    u, v = map(int, sys.stdin.readline().split())
+    adj[u].append(v)
+    adj[v].append(u)
 
-    # Root the tree at 1, compute parent and child relationships
-    parent = [0
+distance = [[-1] * (n + 1) for _ in range(n + 1)]
+parent = [[None] * (n + 1) for _ in range(n + 1)]
+
+start_bob = 1
+start_alex = n
+distance[start_bob][start_alex] = 0
+q = deque([(start_bob, start_alex)])
+
+found = False
+while q:
+    u, v = q.popleft()
+    if u == n and
