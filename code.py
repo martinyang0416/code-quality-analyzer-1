@@ -1,20 +1,18 @@
 import sys
-from collections import deque
 
 def main():
-    N = int(sys.stdin.readline())
-    adj = [[] for _ in range(N + 1)]
-    for _ in range(N - 1):
-        u, v = map(int, sys.stdin.readline().split())
-        adj[u].append(v)
-        adj[v].append(u)
+    N, M = map(int, sys.stdin.readline().split())
+    grid = []
+    for _ in range(N):
+        row = list(map(int, sys.stdin.readline().split()))
+        grid.append(row)
     
-    K = int(sys.stdin.readline())
-    levels = {}
-    for _ in range(K):
-        u, L = map(int, sys.stdin.readline().split())
-        levels[u] = L
+    # Initialize safe matrix
+    safe = [[False for _ in range(N)] for _ in range(N)]
     
-    # Check edges between pre-assigned nodes
-    for u in levels:
-        for v in ad
+    for _ in range(M):
+        x, y, k = map(int, sys.stdin.readline().split())
+        s_i = x - 1  # convert to zero-based indices
+        s_j = y - 1
+        min_x = max(0, s_i - k)
+        max_x = min(N-1,
