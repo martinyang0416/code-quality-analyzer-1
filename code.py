@@ -1,17 +1,19 @@
-#Xenia and Bit Operations
-#from operator import or_, xor
 import sys
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def ispow2(n): #doesn't work for n = 0.
-    neg = n & (n-1)
-    if neg == 0:
-        return True
-    else:
-        return False
-
-def build_seg_tree(n, a): #n is length of a. Tree will have high-level nodes from 1 to n-1, and array will start at n to 2n-1, for a total length of 2n.
-    #Position 0 will be 0 and unused.
-    tree = [0] * (n) #upper nodes of tree.
-    tree.extend(a) #leaves of tree.
-    #Build upper nodes. 
-    ###
+import builtins
+import re
