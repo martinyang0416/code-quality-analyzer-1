@@ -1,18 +1,27 @@
-n = int(input())
-weights = list(map(int, input().split()))
-x = weights.count(100)
-y = weights.count(200)
-total = x + 2 * y
+from collections import Counter
 
-if total % 2 != 0:
-    print("NO")
-else:
-    t = total // 2
-    max_a = min(y, t // 2)
-    possible = False
-    for a in range(max_a + 1):
-        required_b = t - 2 * a
-        if 0 <= required_b <= x:
-            possible = True
-            break
-    print("YES" if possible else "NO")
+a = input().strip()
+b = input().strip()
+c = input().strip()
+
+count_a = Counter(a)
+count_b = Counter(b)
+count_c = Counter(c)
+
+# Compute x_max
+x_max = float('inf')
+for ch in count_b:
+    if count_b[ch] == 0:
+        continue
+    available = count_a.get(ch, 0)
+    max_x = available // count_b[ch]
+    if max_x < x_max:
+        x_max = max_x
+if x_max == float('inf'):
+    x_max = 0
+
+max_total = -1
+best_x = 0
+best_y = 0
+
+for x in range(x_max, -1, -1):  # Iterate from x_
