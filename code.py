@@ -1,24 +1,15 @@
 import sys
-from sys import stdin
-sys.setrecursionlimit(1 << 25)
 
 def main():
-    N = int(stdin.readline())
-    s = stdin.readline().strip()
-    required = []
-    for i in range(N):
-        if s[i] == '1':
-            required.append(i)
-    M = len(required)
-    if M == 0:
-        print(0)
-        return
+    sys.setrecursionlimit(1 << 25)
+    N = int(sys.stdin.readline())
+    a = list(map(int, sys.stdin.readline().split()))
+    prefix = [0] * (N + 1)
+    for i in range(1, N + 1):
+        prefix[i] = prefix[i - 1] + a[i - 1]
 
-    # Build adjacency list
-    adj = [[] for _ in range(N)]
-    for _ in range(N-1):
-        a, b = map(int, stdin.readline().split())
-        a -= 1
-        b -= 1
-        adj[a].append(b)
-    
+    for i in range(1, N + 1):
+        # Compute S_in: subarrays including i
+        sin = [prefix[r] - prefix[l - 1] for l in range(1, i + 1) for r in range(i, N + 1)]
+        
+        # Compute S_out: subarrays not including i (split into left and ri
