@@ -1,15 +1,16 @@
-def canPartition(nums):
-    total_sum = sum(nums)
-    if total_sum % 2 != 0:
-        return False
-    target = total_sum // 2
-    dp = [False] * (target + 1)
-    dp[0] = True  # Base case: sum 0 is achievable
+def minMalwareSpread(graph, initial):
+    n = len(graph)
+    initial_sorted = sorted(initial)
+    min_m = float('inf')
+    result = -1
     
-    for num in nums:
-        # Iterate backwards to avoid reusing the same element multiple times
-        for j in range(target, num - 1, -1):
-            if dp[j - num]:
-                dp[j] = True
-            if dp[target]:
-                return True  # Early exit if target is foun
+    for x in initial_sorted:
+        # Create modified graph by removing all edges connected to x
+        modified = [row.copy() for row in graph]
+        for i in range(n):
+            modified[x][i] = 0
+            modified[i][x] = 0
+        modified[x][x] = 1  # Restore self-loop
+        
+        # New initial list without x
+        new_initial = [node fo
