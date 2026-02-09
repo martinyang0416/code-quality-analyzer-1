@@ -1,19 +1,20 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
-
-import builtins
-import re
+def sort(n,a):
+    list = a
+    for i in range(0,n):
+        for j in range(0,n):
+            if(list[i]>list[j]):
+                t = list[i]
+                list[i] = list[j]
+                list[j] = t
+    return list
+def erase(n,a):
+    temp=1
+    list = sort(n,a)
+    t=0
+    print(a[(n)//2])
+n = int(input())
+a = [int(i) for i in input().split()]
+erase(n,a)
+            
+            
+    
