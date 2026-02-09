@@ -1,22 +1,12 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    ptr = 0
-    n = int(input[ptr])
-    ptr += 1
-    elements = []
-    sum_stored = 0
-    offset = 0
-    for _ in range(n):
-        ti = int(input[ptr])
-        if ti == 1:
-            x = int(input[ptr+1])
-            ptr +=2
-            stored = x - offset
-            elements.append(stored)
-            sum_stored += stored
-        elif ti == 2:
-            ptr +=1
-            if elements:
-                e = elements.pop()
-      
+m, b = map(int, input().split())
+prices = list(map(int, input().split()))
+prices.sort()
+total = 0
+count = 0
+for price in prices:
+    if total + price <= b:
+        total += price
+        count += 1
+    else:
+        break
+print(count)
