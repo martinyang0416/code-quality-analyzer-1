@@ -1,13 +1,26 @@
-import sys
-
 def main():
-    T = int(sys.stdin.readline())
-    for _ in range(T):
-        parts = list(map(int, sys.stdin.readline().split()))
-        M, N, x_s, y_s, x_d, y_d = parts
-        dx = abs(x_d - x_s)
-        dy = abs(y_d - y_s)
-        print(abs(dx - dy))
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    N = int(input[ptr])
+    ptr += 1
+    M = int(input[ptr])
+    ptr += 1
+    K = int(input[ptr])
+    ptr += 1
 
-if __name__ == "__main__":
-    main()
+    A = list(map(int, input[ptr:ptr+N]))
+    ptr += N
+
+    for _ in range(M):
+        L = int(input[ptr])
+        ptr += 1
+        R = int(input[ptr])
+        ptr += 1
+        sub = A[L-1:R]
+        sub.sort()
+        count = 0
+        prev = None
+        for num in sub:
+            if prev is None:
+           
