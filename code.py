@@ -1,19 +1,24 @@
 import sys
 
-def main():
-    A, B, T = map(int, sys.stdin.readline().split())
-    X = list(map(int, sys.stdin.readline().split())) if A > 0 else []
-    Y = list(map(int, sys.stdin.readline().split())) if B > 0 else []
-    W = []
-    S = []
-    for _ in range(T):
-        wi, si = map(int, sys.stdin.readline().split())
-        W.append(wi)
-        S.append(si)
+def putaway(A, B, T, X, Y, W, S):
+    # Compute max_X and max_Y
+    max_X = -float('inf')
+    if A > 0:
+        max_X = max(X)
+    max_Y = -float('inf')
+    if B > 0:
+        max_Y = max(Y)
     
-    # Compute X_max and Y_max
-    X_max = max(X) if A > 0 else 0
-    Y_max = max(Y) if B > 0 else 0
+    W_only = 0
+    S_only = 0
+    both = 0
+    all_eligible = True
     
-    problematic = 0
-    S_imp 
+    for i in range(T):
+        is_weak = (A > 0 and W[i] < max_X)
+        is_small = (B > 0 and S[i] < max_Y)
+        if not is_weak and not is_small:
+            return -1
+        
+        if is_weak and not is_small:
+  
