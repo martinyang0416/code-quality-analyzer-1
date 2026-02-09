@@ -1,25 +1,20 @@
-def count_subsequences():
-    import sys
+import sys
+
+def main():
     input = sys.stdin.read
     data = input().split()
-    
-    N = int(data[0])
-    Q = int(data[1])
-    a = list(map(int, data[2:2+N]))
-    
-    prefix = [0] * (N + 1)
-    for i in range(1, N+1):
-        prefix[i] = prefix[i-1] + a[i-1]
-    
-    A = [0] * (N + 1)
-    for j in range(N+1):
-        A[j] = prefix[j] - j
-    
-    freq_map = {}
-    current_mod = A[0] % Q
-    freq_map[current_mod] = 1
-    
-    result = 0
-    
-    for j in range(1, N+1):
-       
+    idx = 0
+    t = int(data[idx])
+    idx += 1
+    for _ in range(t):
+        n, m = int(data[idx]), int(data[idx + 1])
+        idx += 2
+        node_values = list(map(int, data[idx:idx + n]))
+        idx += n
+        adj = [[] for _ in range(n)]
+        for __ in range(n - 1):
+            u, v = int(data[idx]) - 1, int(data[idx + 1]) - 1
+            adj[u].append(v)
+            adj[v].append(u)
+            idx += 2
+ 
