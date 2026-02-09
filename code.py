@@ -1,17 +1,20 @@
-import sys
-
 def main():
-    n, q = map(int, sys.stdin.readline().split())
-    v = list(map(int, sys.stdin.readline().split()))
-    v.sort(reverse=True)
+    import sys
+    input = sys.stdin.read().split()
+    n = int(input[0])
+    k = int(input[1])
+    m = int(input[2])  # Note: m is read but not used in this approach
+    cities = list(map(int, input[3:3+n]))
     
-    prefix = [0] * (n + 1)
-    for i in range(1, n + 1):
-        prefix[i] = prefix[i-1] + v[i-1]
-    
-    for _ in range(q):
-        x, y = map(int, sys.stdin.readline().split())
-        print(prefix[y])
-
-if __name__ == "__main__":
-    main()
+    # Create runs
+    runs = []
+    if not cities:
+        print(0)
+        return
+    current_city = cities[0]
+    current_count = 1
+    for city in cities[1:]:
+        if city == current_city:
+            current_count += 1
+        else:
+            runs.append((current_c
