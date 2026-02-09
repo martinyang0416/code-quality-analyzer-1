@@ -1,7 +1,10 @@
-nums = list(map(int, input().split()))
-a1 = nums[1]
-a2 = nums[2]
-a3 = nums[3] if len(nums) > 3 else 0
-a4 = nums[4] if len(nums) > 4 else 0
-result = (a1 + a2 + a3 + a4) * a3
-print(result)
+n = int(input())
+arr = list(range(1, n + 1))
+for k in range(2, n + 1):
+    for i in range(0, n, k):
+        block = arr[i:i + k]
+        if not block:
+            continue
+        rotated = block[1:] + block[:1]
+        arr[i:i + k] = rotated
+print(' '.join(map(str, arr)))
