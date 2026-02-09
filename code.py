@@ -1,3 +1,3 @@
-Okay, let's see. The problem is to take an integer a between 1 and 30 and output some result. The example given is input 3 outputs 27. Hmm, 3 cubed is 27. So maybe the problem is to compute a cubed? Wait, but let me think again. Because maybe there's a trick here. Let's see other possibilities. Like, perhaps the output is the sum of numbers up to a? No, 3 would be 6. Or factorial? 3! is 6. Not 27. So 3^3 is 27. That fits. So maybe the task is just to compute a cubed. 
+Okay, I need to solve this programming problem. Let's see what the question is. The input is a single integer a between 1 and 30, and the output should be another integer. The example given is when the input is 3, the output is 27. Hmm, 3 cubed is 27. So maybe the problem is to compute a cubed? But wait, let me think again. Maybe there's another pattern here. Let me check if there are other possible interpretations.
 
-But why would the problem 
+Wait, the example fits with a^3. Let's see: 3^3 is 27. So perhaps the task is s
