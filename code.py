@@ -1,21 +1,18 @@
-MOD = 10**9 + 7
-
-def numSubseq(nums, target):
-    nums.sort()
-    n = len(nums)
-    power = [1] * (n + 1)
-    for i in range(1, n + 1):
-        power[i] = (power[i-1] * 2) % MOD
-    
-    total = 0
-    for j in range(n):
-        left, right = 0, j
-        i_max = -1
-        while left <= right:
-            mid = (left + right) // 2
-            if nums[mid] + nums[j] <= target:
-                i_max = mid
-                left = mid + 1
-            else:
-                right = mid - 1
-        sum_
+def findReplaceString(s, indexes, sources, targets):
+    valid = []
+    n = len(indexes)
+    for i in range(n):
+        start = indexes[i]
+        src = sources[i]
+        trg = targets[i]
+        src_len = len(src)
+        end = start + src_len
+        if end > len(s):
+            continue
+        if s[start:end] == src:
+            valid.append((start, end, trg))
+    valid.sort(key=lambda x: x[0])
+    res = []
+    current = 0
+    for s_start, s_end, t in valid:
+        res.append(s[current:s_s
