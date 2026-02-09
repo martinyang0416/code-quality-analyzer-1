@@ -1,18 +1,17 @@
-def generate_partitions():
-    nums = [1, 2, 3, 4, 5, 6]
-    partitions = []
+def generate_all_matchings(elements):
+    if not elements:
+        yield []
+        return
+    first = elements[0]
+    for i in range(1, len(elements)):
+        pair = (first, elements[i])
+        remaining = elements[1:i] + elements[i+1:]
+        for sub_match in generate_all_matchings(remaining):
+            yield [pair] + sub_match
 
-    def helper(remaining, path):
-        if not remaining:
-            partitions.append(path.copy())
-            return
-        first = remaining[0]
-        for i in range(1, len(remaining)):
-            pair = (first, remaining[i])
-            new_remaining = remaining[1:i] + remaining[i+1:]
-            helper(new_remaining, path + [pair])
+# Precompute all possible perfect matchings for 1-6
+elements = [1, 2, 3, 4, 5, 6]
+all_matchings = list(generate_all_matchings(elements))
 
-    helper(nums, [])
-    return partitions
-
-all_partitions = generate_partiti
+def solve():
+    import 
