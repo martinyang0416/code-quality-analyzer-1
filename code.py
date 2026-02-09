@@ -1,26 +1,22 @@
 def main():
     import sys
-    m, *rest = list(map(int, sys.stdin.read().split()))
-    p = rest[:m]
-    min_p = min(p)
-    max_p = max(p)
-    
-    if min_p == max_p:
-        print("POSSIBLE")
-        return
-    
-    if (max_p - min_p) % 2 != 0:
-        print("IMPOSSIBLE")
-        return
-    
-    y = (max_p - min_p) // 2
-    x = (max_p + min_p) // 2
-    
-    for pi in p:
-        if pi != x + y and pi != x - y:
-            print("IMPOSSIBLE")
-            return
-    
-    print("POSSIBLE")
-
-if __nam
+    input = sys.stdin.read().split()
+    ptr = 0
+    n = int(input[ptr])
+    ptr += 1
+    elements = []
+    sum_stored = 0
+    offset = 0
+    for _ in range(n):
+        ti = int(input[ptr])
+        if ti == 1:
+            x = int(input[ptr+1])
+            ptr +=2
+            stored = x - offset
+            elements.append(stored)
+            sum_stored += stored
+        elif ti == 2:
+            ptr +=1
+            if elements:
+                e = elements.pop()
+      
