@@ -1,6 +1,3 @@
 a = int(input())
-fact = 1
-for i in range(1, a + 1):
-    fact *= i
-binary_representation = bin(fact)[2:]  # Remove the '0b' prefix
-print(binary_representation.count('1'))
+sum_digits = (a // 10) + (a % 10) if a >= 10 else a
+print("YES" if sum_digits % 5 == 0 else "NO")
