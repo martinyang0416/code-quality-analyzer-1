@@ -1,9 +1,5 @@
-a = int(input())
-p = [4, 1, 3, 2, 0, 5]  # permutation mapping for each bit position 0-5
-result = 0
+Okay, I need to solve this programming problem where the input is an integer a between 1 and 30, and the output is another integer. The example given is input 3 outputs 27. Let me think about what's going on here. 
 
-for i in range(6):
-    if a & (1 << i):
-        result |= 1 << p[i]
+Hmm, 3 cubed is 27. Oh right! So maybe the problem is to compute a cubed? Let me check. If that's the case, then the output is simply a multiplied by itself twice. So for any input a, the output is a^3. 
 
-print(result)
+Wait, but let me make sure there's no trick here. The problem statement is shor
