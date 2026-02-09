@@ -1,20 +1,18 @@
-def numDecodings(s: str) -> int:
-    n = len(s)
-    dp = [0] * (n + 1)
-    dp[0] = 1  # empty string has one way to decode
+def largestSumOfAverages(A, K):
+    n = len(A)
+    prefix_sum = [0.0] * (n + 1)
+    for i in range(n):
+        prefix_sum[i + 1] = prefix_sum[i] + A[i]
     
-    # Handle first character
-    dp[1] = 1 if s[0] != '0' else 0
+    dp = [[0.0] * (K + 1) for _ in range(n)]
     
-    for i in range(2, n + 1):
-        # Check single digit
-        current_digit = s[i-1]
-        if current_digit != '0':
-            dp[i] += dp[i-1]
-        
-        # Check two digits
-        two_digit = int(s[i-2] + s[i-1])
-        if 10 <= two_digit <= 26:
-            dp[i] += dp[i-2]
-    
-    r
+    for k in range(1, K + 1):
+        for i in range(n):
+            if k == 1:
+                dp[i][k] = prefix_sum[i + 1] / (i + 1)
+            else:
+                if i < k - 1:
+                    continue
+                max_val = 0.0
+                for j in range(k - 2, i):
+         
