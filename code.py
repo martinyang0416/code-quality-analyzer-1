@@ -1,10 +1,17 @@
-def combinationSum4(nums, target):
-    dp = [0] * (target + 1)
-    dp[0] = 1  # Base case: one way to reach sum 0 (using no numbers)
-    for i in range(1, target + 1):
-        for num in nums:
-            if i >= num:
-                dp[i] += dp[i - num]
-    return dp[target]
+from typing import List
 
-# The function calculates the number of combinations (with order) that sum to the target using dynamic programming.
+class Solution:
+    def shortestSubarray(self, A: List[int], K: int) -> int:
+        n = len(A)
+        prefix = [0] * (n + 1)
+        for i in range(n):
+            prefix[i+1] = prefix[i] + A[i]
+        
+        deque = []
+        deque.append(0)
+        min_len = float('inf')
+        
+        for j in range(1, len(prefix)):
+            # Maintain deque to keep prefix in increasing order
+            while deque and prefix[j] <= prefix[deque[-1]]:
+                deque.
