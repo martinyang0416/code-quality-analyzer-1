@@ -1,15 +1,16 @@
-from collections import defaultdict
+from collections import Counter
 
-class Solution:
-    def largestOverlap(self, img1: List[List[int]], img2: List[List[int]]) -> int:
-        n = len(img1)
-        ones1 = [(i, j) for i in range(n) for j in range(n) if img1[i][j] == 1]
-        ones2 = [(i, j) for i in range(n) for j in range(n) if img2[i][j] == 1]
-        
-        counter = defaultdict(int)
-        max_overlap = 0
-        
-        for i1, j1 in ones1:
-            for i2, j2 in ones2:
-                dx = i2 - i1
-              
+def getHint(secret: str, guess: str) -> str:
+    bulls = 0
+    s_non_bull = []
+    g_non_bull = []
+    for s, g in zip(secret, guess):
+        if s == g:
+            bulls += 1
+        else:
+            s_non_bull.append(s)
+            g_non_bull.append(g)
+    s_counter = Counter(s_non_bull)
+    g_counter = Counter(g_non_bull)
+    cows = sum((s_counter & g_counter).values())
+    return f"{bulls}A{cows}B"
