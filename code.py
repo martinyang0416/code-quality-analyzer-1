@@ -1,8 +1,11 @@
 s = input().strip()
-digits = list(map(int, s[1:7]))
-sum_digits = sum(digits)
-has_zero = 0 in digits
-if has_zero:
-    print(sum_digits + 10)
-else:
-    print(sum_digits + 1)
+digits = s[1:]  # Extract the six digits after 'A'
+d1 = int(digits[0])
+d2 = int(digits[1])
+d3 = int(digits[2])
+
+result = d1 * 10 + d2
+if d3 < d1:
+    result -= 1
+
+print(result)
