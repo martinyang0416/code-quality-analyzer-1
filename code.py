@@ -1,13 +1,10 @@
-def minimal_length(s):
-    stack = []
-    for char in s:
-        if stack and stack[-1] == char:
-            stack.pop()
-        else:
-            stack.append(char)
-    return len(stack)
-
 T = int(input())
 for _ in range(T):
-    s = input().strip()
-    print(minimal_length(s))
+    s1 = input().strip().lower()
+    s2 = input().strip().lower()
+    if s1 < s2:
+        print("first")
+    elif s1 > s2:
+        print("second")
+    else:
+        print("equal")
