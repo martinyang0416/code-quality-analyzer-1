@@ -1,15 +1,20 @@
-X = input().strip()
-stack = []
-count = 0
+MOD = 10**8 + 7
+max_n = 2000
 
-for c in X:
-    if c == 'S':
-        stack.append(c)
-    else:
-        if stack and stack[-1] == 'S':
-            stack.pop()
-            count += 1
-        else:
-            stack.append(c)
+# Precompute factorial and inverse factorial modulo MOD
+fact = [1] * (max_n + 1)
+for i in range(1, max_n + 1):
+    fact[i] = fact[i-1] * i % MOD
 
-print(len(X) - 2 * count)
+inv_fact = [1] * (max_n + 1)
+inv_fact[max_n] = pow(fact[max_n], MOD-2, MOD)
+for i in range(max_n - 1, -1, -1):
+    inv_fact[i] = inv_fact[i + 1] * (i + 1) % MOD
+
+def comb(n, k):
+    if n < 0 or k < 0 or k > n:
+        return 0
+    return fact[n] * inv_fact[k] % MOD * inv_fact[n - k] % MOD
+
+# Read input
+r, c, a1, a2, b1, b2
