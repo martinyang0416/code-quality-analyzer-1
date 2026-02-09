@@ -1,25 +1,20 @@
-N, M = map(int, input().split())
+MOD = 10**9 + 7
+max_fact = 5000
 
-def factorize(n):
-    factors = {}
-    while n % 2 == 0:
-        factors[2] = factors.get(2, 0) + 1
-        n = n // 2
-    i = 3
-    while i * i <= n:
-        while n % i == 0:
-            factors[i] = factors.get(i, 0) + 1
-            n = n // i
-        i += 2
-    if n > 1:
-        factors[n] = 1
-    return factors
+# Precompute factorial and inverse factorial modulo MOD
+fact = [1] * (max_fact + 1)
+for i in range(1, max_fact + 1):
+    fact[i] = fact[i-1] * i % MOD
 
-factors = factorize(N)
+inv_fact = [1] * (max_fact + 1)
+inv_fact[max_fact] = pow(fact[max_fact], MOD-2, MOD)
+for i in range(max_fact - 1, -1, -1):
+    inv_fact[i] = inv_fact[i+1] * (i+1) % MOD
 
-divisors = [(1, 1)]
-for p, e in factors.items():
-    temp = []
-    for d, mu in divisors:
-        for k in range(e + 1):
-  
+def comb(m, r):
+    if r < 0 or r > m:
+        return 0
+    return fact[m] * inv_fact[r] % MOD * inv_fact[m - r] % MOD
+
+T = int(input())
+for _ in
