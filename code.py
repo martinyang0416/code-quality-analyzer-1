@@ -1,15 +1,20 @@
-n = int(input())
-s = input().strip()
-k = s.count('H')
+n, l, r = map(int, input().split())
+l -= 1
+r -= 1
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
 
-if k == 0 or k == n:
-    print(0)
+# Check elements outside the l..r range
+for i in range(n):
+    if i < l or i > r:
+        if a[i] != b[i]:
+            print("LIE")
+            exit()
+
+# Check if the subarrays are permutations
+a_sub = a[l:r+1]
+b_sub = b[l:r+1]
+if sorted(a_sub) == sorted(b_sub):
+    print("TRUTH")
 else:
-    s_double = s + s
-    min_swaps = float('inf')
-    for i in range(n):
-        window = s_double[i:i+k]
-        t_count = window.count('T')
-        if t_count < min_swaps:
-            min_swaps = t_count
-    print(min_swaps)
+    print("LIE")
