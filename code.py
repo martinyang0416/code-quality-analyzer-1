@@ -1,23 +1,17 @@
-def rotate90(mat):
-    if not mat or not mat[0]:
-        return []
-    a = len(mat)
-    b = len(mat[0])
-    rotated = []
-    for c in range(b):
-        new_row = []
-        for r in range(a):
-            new_row.append(mat[a - r - 1][c])
-        rotated.append(''.join(new_row))
-    return rotated
+import sys
 
-def rotate270(mat):
-    if not mat or not mat[0]:
-        return []
-    r1 = rotate90(mat)
-    r2 = rotate90(r1)
-    r3 = rotate90(r2)
-    return r3
+def main():
+    n, q = map(int, sys.stdin.readline().split())
+    v = list(map(int, sys.stdin.readline().split()))
+    v.sort(reverse=True)
+    
+    prefix = [0] * (n + 1)
+    for i in range(1, n + 1):
+        prefix[i] = prefix[i-1] + v[i-1]
+    
+    for _ in range(q):
+        x, y = map(int, sys.stdin.readline().split())
+        print(prefix[y])
 
-def find_unique_divisions(grid, N, M):
-    divisors
+if __name__ == "__main__":
+    main()
