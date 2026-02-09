@@ -1,9 +1,12 @@
-In Omkar's last class of math, he learned about the least common multiple, or LCM. LCM(a, b) is the smallest positive integer x which is divisible by both a and b.
-
-Omkar, having a laudably curious mind, immediately thought of a problem involving the LCM operation: given an integer n, find positive integers a and b such that a + b = n and LCM(a, b) is the minimum value possible.
-
-Can you help Omkar solve his ludicrously challenging math problem?
-
-Input
-
-Each test contains multiple test cases. Th
+def solution(l1):
+    l1.sort()
+    l1.reverse()
+    c_out=""
+    for x in l1:
+        if x==l1[0]:
+            c_out+=x
+    return c_out
+def answer():
+    l1 = list(input())
+    print(solution(l1))
+answer()
