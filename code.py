@@ -1,18 +1,15 @@
-def longestDupSubstring(S: str) -> str:
-    n = len(S)
-    if n == 0:
-        return ""
-    
-    # Define two sets of base and mod for double hashing
-    base1, mod1 = 26, 10**9 + 7
-    base2, mod2 = 27, 10**9 + 9
-    
-    # Precompute prefix arrays and power arrays for both hash functions
-    prefix1 = [0] * (n + 1)
-    prefix2 = [0] * (n + 1)
-    power1 = [1] * (n + 1)
-    power2 = [1] * (n + 1)
-    
-    for i in range(n):
-        c = ord(S[i]) - ord('a')
-        prefix1[i+1] = (prefix1[i] * b
+def longestOnes(A, K):
+    left = 0
+    max_len = 0
+    zeros = 0
+    for right in range(len(A)):
+        if A[right] == 0:
+            zeros += 1
+        while zeros > K:
+            if A[left] == 0:
+                zeros -= 1
+            left += 1
+        current_len = right - left + 1
+        if current_len > max_len:
+            max_len = current_len
+    return max_len
