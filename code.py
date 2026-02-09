@@ -1,11 +1,20 @@
-n = int(input())
-positions = list(map(int, input().split()))
-positions.sort()
+from collections import deque, defaultdict
 
-black = [i for i in range(1, n + 1) if i % 2 == 1]
-white = [i for i in range(1, n + 1) if i % 2 == 0]
-
-sum_black = sum(abs(p - t) for p, t in zip(positions, black))
-sum_white = sum(abs(p - t) for p, t in zip(positions, white))
-
-print(min(sum_black, sum_white))
+def min_jumps(start, end, color_map, colors):
+    if start == end:
+        return 0
+    N = len(colors)
+    visited = [False] * N
+    processed_colors = set()
+    q = deque([(start, 0)])
+    visited[start] = True
+    
+    while q:
+        pos, dist = q.popleft()
+        if pos == end:
+            return dist
+        # Move left
+        if pos > 0 and not visited[pos - 1]:
+            visited[pos - 1] = True
+            q.append((pos - 1, dist + 1))
+   
