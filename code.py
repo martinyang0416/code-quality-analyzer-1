@@ -1,26 +1,19 @@
-import sys
-from bisect import bisect_right
-from collections import defaultdict
+import itertools
 
-n = int(sys.stdin.readline())
-balls = list(map(int, sys.stdin.readline().split()))
-balls.sort()
+heroes = ['Anka', 'Chapay', 'Cleo', 'Troll', 'Dracul', 'Snowy', 'Hexadecimal']
+hero_to_idx = {name: i for i, name in enumerate(heroes)}
 
-H = defaultdict(int)
+n = int(input())
+likes = [set() for _ in range(7)]
+for _ in range(n):
+    p, _, q = input().split()
+    p_idx = hero_to_idx[p]
+    q_idx = hero_to_idx[q]
+    likes[p_idx].add(q_idx)
 
-for i in range(n):
-    a = balls[i]
-    for j in range(i):
-        j_val = balls[j]
-        d = a - j_val
-        H[d] += 1
+a, b, c = map(int, input().split())
 
-F = defaultdict(int)
-for d1 in H:
-    for d2 in H:
-        s = d1 + d2
-        F[s] += H[d1] * H[d2]
+candidates = []
 
-sorted_ds = sorted(H.keys())
-prefix = [0] * (len(sorted_ds) + 1)
-for i in 
+for assignment in itertools.product([0, 1, 2], repeat=7):
+    if 0 not in assignment or 1 not in assignment 
