@@ -1,21 +1,21 @@
-import sys
-from collections import deque
+class FenwickTree:
+    def __init__(self, size):
+        self.n = size
+        self.tree = [0] * (self.n + 2)
 
-def main():
-    input = sys.stdin.read().split()
-    idx = 0
-    n = int(input[idx]); idx += 1
-    m = int(input[idx]); idx += 1
-    k = int(input[idx]); idx += 1
+    def update(self, index, delta):
+        while index <= self.n:
+            self.tree[index] += delta
+            index += index & -index
 
-    adj = [[] for _ in range(n + 1)]  # 1-based indexing
-    core_degree = [0] * (n + 1)
-    in_core = [False] * (n + 1)
-    current_degree = [0] * (n + 1)
-    ans = []
-    core_size = 0
+    def query(self, index):
+        res = 0
+        while index > 0:
+            res += self.tree[index]
+            index -= index & -index
+        return res
 
-    for _ in range(m):
-        u = int(input[idx]); idx += 1
-        v = int(input[idx]); idx += 1
-       
+n = int(input())
+s = list(map(int, input().split()))
+fenwick = FenwickTree(n)
+for x in
