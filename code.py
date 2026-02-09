@@ -3,24 +3,20 @@ import bisect
 def main():
     import sys
     input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    a = list(map(int, input[idx:idx+N]))
-    idx += N
-    S = sorted(a)
-    prefix = [0] * (N + 1)
+    ptr = 0
+    N = int(input[ptr])
+    ptr += 1
+    arr = list(map(int, input[ptr:ptr+N]))
+    ptr += N
+    sorted_list = sorted(arr)
+    prefix_sum = [0] * (N + 1)
     for i in range(N):
-        prefix[i+1] = prefix[i] + S[i]
-    
-    T = 0
+        prefix_sum[i+1] = prefix_sum[i] + sorted_list[i]
+    total = 0
     for i in range(N):
-        T += S[i] * (i + 1)
-    
-    Q = int(input[idx])
-    idx += 1
+        total += sorted_list[i] * (i + 1)
+    Q = int(input[ptr])
+    ptr += 1
     for _ in range(Q):
-        i = int(input[idx])
-        j = int(input[idx+1])
-        idx += 2
-     
+        i = int(input[ptr])
+        
