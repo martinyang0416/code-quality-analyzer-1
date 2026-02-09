@@ -1,26 +1,21 @@
+import sys
 MOD = 10**9 + 7
 
 def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx +=1
-    M = int(input[idx])
-    idx +=1
-    
-    masks = []
+    N, M = map(int, sys.stdin.readline().split())
+    test_solvers = []
     for _ in range(M):
-        s = input[idx]
-        idx +=1
-        masks.append(s)
+        s = sys.stdin.readline().strip()
+        test_solvers.append(s)
     
-    # Create bitmask for each problem
-    problem_masks = []
+    # Compute H bitmask for each problem
+    H_bits = []
     for i in range(N):
-        bm = 0
-        for j in range(M):
-            if masks[j][i] == 'H':
-                bm |= 1 << j
-        problem_masks.append(bm)
- 
+        h = 0
+        for m in range(M):
+            if test_solvers[m][i] == 'H':
+                h |= 1 << m
+        H_bits.append(h)
+    
+    # Count occurrences of each H
+    from collections import defau
