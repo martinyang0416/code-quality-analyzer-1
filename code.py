@@ -1,19 +1,16 @@
 import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
 
-import builtins
-import re
+def main():
+    T = int(sys.stdin.readline())
+    for _ in range(T):
+        R = int(sys.stdin.readline())
+        R_sq = R * R
+        points = []
+        for _ in range(3):
+            x, y = map(int, sys.stdin.readline().split())
+            points.append((x, y))
+        # Compute pairwise squared distances
+        a, b, c = points
+        d_ab = (a[0] - b[0])**2 + (a[1] - b[1])**2
+        d_ac = (a[0] - c[0])**2 + (a[1] - c[1])**2
+        d_bc = (b[0] - c[0])**2 + (b[1] - c[1])**
