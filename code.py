@@ -1,16 +1,21 @@
 import sys
+from collections import deque
 
 def main():
-    T = int(sys.stdin.readline())
-    for _ in range(T):
-        R = int(sys.stdin.readline())
-        R_sq = R * R
-        points = []
-        for _ in range(3):
-            x, y = map(int, sys.stdin.readline().split())
-            points.append((x, y))
-        # Compute pairwise squared distances
-        a, b, c = points
-        d_ab = (a[0] - b[0])**2 + (a[1] - b[1])**2
-        d_ac = (a[0] - c[0])**2 + (a[1] - c[1])**2
-        d_bc = (b[0] - c[0])**2 + (b[1] - c[1])**
+    input = sys.stdin.read().split()
+    idx = 0
+    n = int(input[idx]); idx += 1
+    m = int(input[idx]); idx += 1
+    k = int(input[idx]); idx += 1
+
+    adj = [[] for _ in range(n + 1)]  # 1-based indexing
+    core_degree = [0] * (n + 1)
+    in_core = [False] * (n + 1)
+    current_degree = [0] * (n + 1)
+    ans = []
+    core_size = 0
+
+    for _ in range(m):
+        u = int(input[idx]); idx += 1
+        v = int(input[idx]); idx += 1
+       
