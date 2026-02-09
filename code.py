@@ -1,15 +1,14 @@
-def carFleet(target, position, speed):
-    if not position:
-        return 0
-    
-    cars = sorted(zip(position, speed), key=lambda x: -x[0])
-    max_time = 0
-    fleet_count = 0
-    
-    for p, s in cars:
-        time = (target - p) / s
-        if time > max_time:
-            fleet_count += 1
-            max_time = time
-    
-    return fleet_count
+def threeSumClosest(nums, target):
+    nums.sort()
+    closest_sum = nums[0] + nums[1] + nums[2]
+    n = len(nums)
+    for i in range(n - 2):
+        left, right = i + 1, n - 1
+        while left < right:
+            current_sum = nums[i] + nums[left] + nums[right]
+            if current_sum == target:
+                return current_sum
+            if abs(current_sum - target) < abs(closest_sum - target):
+                closest_sum = current_sum
+            if current_sum < target:
+            
