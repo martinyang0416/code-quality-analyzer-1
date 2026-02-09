@@ -1,21 +1,23 @@
 import sys
-MOD = 10**9 + 7
+
+class TrieNode:
+    __slots__ = ['children']
+    def __init__(self):
+        self.children = [None, None]  # children[0] and children[1]
 
 def main():
-    N, M = map(int, sys.stdin.readline().split())
-    test_solvers = []
-    for _ in range(M):
+    C, N = map(int, sys.stdin.readline().split())
+    masks = []
+    unique_masks = set()
+
+    for _ in range(N):
         s = sys.stdin.readline().strip()
-        test_solvers.append(s)
-    
-    # Compute H bitmask for each problem
-    H_bits = []
-    for i in range(N):
-        h = 0
-        for m in range(M):
-            if test_solvers[m][i] == 'H':
-                h |= 1 << m
-        H_bits.append(h)
-    
-    # Count occurrences of each H
-    from collections import defau
+        mask = 0
+        for c in s:
+            mask <<= 1
+            if c == 'H':
+                mask |= 1
+        masks.append(mask)
+        unique_masks.add(mask)
+
+    unique_ma
