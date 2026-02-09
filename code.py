@@ -1,8 +1,18 @@
-s = input().strip()
-stack = []
-for c in s:
-    if stack and stack[-1] == c:
-        stack.pop()
+cnt1, cnt2, x, y = map(int, input().split())
+lcm = x * y  # Since x and y are distinct primes
+
+low = 1
+high = 10**18
+
+while low < high:
+    mid = (low + high) // 2
+    a = mid - mid // x
+    b = mid - mid // y
+    c = mid - mid // lcm
+    
+    if a >= cnt1 and b >= cnt2 and c >= (cnt1 + cnt2):
+        high = mid
     else:
-        stack.append(c)
-print("Yes" if not stack else "No")
+        low = mid + 1
+
+print(low)
