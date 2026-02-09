@@ -1,22 +1,21 @@
-import bisect
-
 def main():
     import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    N = int(input[idx])
-    idx += 1
-    a = list(map(int, input[idx:idx+N]))
-    idx += N
-    Q = int(input[idx])
-    idx += 1
-    queries = []
-    for _ in range(Q):
-        i = int(input[idx])
-        j = int(input[idx+1])
-        queries.append((i-1, j))  # converting to 0-based
-        idx +=2
+    s = sys.stdin.readline().strip()
+    n = len(s)
+    B = [0] * (n + 1)
+    E = [0] * (n + 1)
+    S = [0] * (n + 1)
+    I = [0] * (n + 1)
 
-    # Preprocessing steps
-    # Create sorted list with original indices
-    sorted_with_indices = sorted( (
+    for i in range(n):
+        B[i+1] = B[i] + (1 if s[i] == 'b' else 0)
+        E[i+1] = E[i] + (1 if s[i] == 'e' else 0)
+        S[i+1] = S[i] + (1 if s[i] == 's' else 0)
+        I[i+1] = I[i] + (1 if s[i] == 'i' else 0)
+    
+    total = 0
+
+    for r in range(1, n+1):
+        stack = []
+        current_min = float('inf')
+       
