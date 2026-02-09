@@ -1,12 +1,14 @@
-def minPatches(nums, n):
-    patches = 0
-    miss = 1
-    i = 0
-    while miss <= n:
-        if i < len(nums) and nums[i] <= miss:
-            miss += nums[i]
-            i += 1
-        else:
-            miss += miss
-            patches += 1
-    return patches
+def length_of_longest_substring(s):
+    char_map = {}
+    max_length = 0
+    left = 0
+    
+    for right in range(len(s)):
+        current_char = s[right]
+        if current_char in char_map and char_map[current_char] >= left:
+            left = char_map[current_char] + 1
+        char_map[current_char] = right
+        current_length = right - left + 1
+        if current_length > max_length:
+            max_length = current_length
+    return max_length
