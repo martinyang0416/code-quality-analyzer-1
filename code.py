@@ -1,21 +1,20 @@
-import sys
+h, w = map(int, input().split())
+grid = [list(map(int, input().split())) for _ in range(h)]
 
-def main():
-    input = sys.stdin.read().split()
-    ptr = 0
-    T = int(input[ptr])
-    ptr += 1
-    for _ in range(T):
-        N = int(input[ptr])
-        M = int(input[ptr + 1])
-        ptr += 2
-        res = []
-        for _ in range(N):
-            min_p = float('inf')
-            best = 0
-            for shop in range(M):
-                d1 = int(input[ptr])
-                d2 = int(input[ptr + 1])
-                d3 = int(input[ptr + 2])
-                ptr += 3
-              
+if h == 0:
+    print(0)
+    exit()
+
+prev_row = grid[0]
+
+for i in range(1, h):
+    current_row = []
+    for j in range(w):
+        max_prev = 0
+        # Check possible positions from the previous row
+        for k in [j-1, j, j+1]:
+            if 0 <= k < w:
+                if prev_row[k] > max_prev:
+                    max_prev = prev_row[k]
+        current_row.append(max_prev + grid[i][j])
+    prev_row
