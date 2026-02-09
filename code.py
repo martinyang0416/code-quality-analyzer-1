@@ -1,18 +1,17 @@
-MOD = 998244353
-max_n = 100
+MOD = 10**9 + 7
 
-# Precompute Stirling numbers of the second kind S(n, m)
-S = [[0] * (max_n + 1) for _ in range(max_n + 1)]
-S[0][0] = 1
-for n in range(1, max_n + 1):
-    for m in range(1, n + 1):
-        S[n][m] = (S[n-1][m-1] + m * S[n-1][m]) % MOD
-
-# Precompute T(n, m): partitions into m subsets each of size >=2
-T = [[0] * (max_n + 1) for _ in range(max_n + 1)]
-# Initialize T[n][1] for n >= 2
-for n in range(2, max_n + 1):
-    T[n][1] = 1
-
-for m in range(2, max_n + 1):
-    for n in 
+def compute_ways(start, end, steps, adj, N):
+    dp_prev = [0] * (N + 1)
+    dp_prev[start] = 1
+    for _ in range(steps):
+        dp_next = [0] * (N + 1)
+        for u in range(1, N + 1):
+            if dp_prev[u] == 0:
+                continue
+            # Stay
+            dp_next[u] = (dp_next[u] + dp_prev[u]) % MOD
+            # Move to neighbors
+            for v in adj[u]:
+                dp_next[v] = (dp_next[v] + dp_prev[u]) % MOD
+        dp_prev = dp_next
+    return dp
