@@ -1,15 +1,19 @@
-n, p = map(int, input().split())
-s = list(input().strip())
-vowels = {'a', 'e', 'i', 'o', 'u'}
-p_max_char = chr(ord('a') + p - 1)
+from collections import Counter
+import sys
 
-for i in range(n-1, -1, -1):
-    current_char = s[i]
-    current_ord = ord(current_char)
-    if current_ord >= ord(p_max_char):
-        continue
-    # Iterate through possible next characters
-    for c_ord in range(current_ord + 1, ord(p_max_char) + 1):
-        c = chr(c_ord)
-        # Check if the previous character is a vowel and c is also a vowel
-        if i > 0:
+def main():
+    n = int(sys.stdin.readline())
+    for _ in range(n):
+        t = sys.stdin.readline().strip()
+        q = sys.stdin.readline().strip()
+        
+        t_counts = Counter(t)
+        q_counts = Counter(q)
+        
+        # Check if it's possible to form Q from T
+        possible = True
+        for char in q_counts:
+            if t_counts[char] < q_counts[char]:
+                possible = False
+                break
+        if not possi
