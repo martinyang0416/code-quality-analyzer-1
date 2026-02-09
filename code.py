@@ -1,19 +1,21 @@
-from collections import Counter
-import sys
+def minimal_distance(a, b):
+    return min(abs(ord(a) - ord(b)), 26 - abs(ord(a) - ord(b)))
 
 def main():
-    n = int(sys.stdin.readline())
-    for _ in range(n):
-        t = sys.stdin.readline().strip()
-        q = sys.stdin.readline().strip()
-        
-        t_counts = Counter(t)
-        q_counts = Counter(q)
-        
-        # Check if it's possible to form Q from T
-        possible = True
-        for char in q_counts:
-            if t_counts[char] < q_counts[char]:
-                possible = False
-                break
-        if not possi
+    import sys
+    input = sys.stdin.read().split()
+    ptr = 0
+    P = int(input[ptr]); ptr +=1
+    Q = int(input[ptr]); ptr +=1
+    L = int(input[ptr]); ptr +=1
+    U = input[ptr]; ptr +=1
+    V = input[ptr]; ptr +=1
+    
+    windows = []
+    for i in range(Q - P + 1):
+        cost = 0
+        changes = {}
+        valid = True
+        for k in range(P):
+            u_char = U[k]
+           
