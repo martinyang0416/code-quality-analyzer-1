@@ -1,16 +1,19 @@
-def maxNonOverlappingSubarrays(nums, target):
-    count = 0
-    current_sum = 0
-    start = 0
-    n = len(nums)
-    for end in range(n):
-        current_sum += nums[end]
-        # Adjust start to ensure current_sum doesn't exceed target
-        while current_sum > target and start <= end:
-            current_sum -= nums[start]
-            start += 1
-        # Check if current_sum matches target
-        if current_sum == target:
-            count += 1
-            # Reset for next subarray
-       
+def putaway(A, B, T, X, Y, W, S):
+    # Since we are handling T=2 and A+B=2, T is fixed to 2
+    # Check feasibility for each toy
+    for toy in range(2):
+        can_weak = False
+        for x in X:
+            if W[toy] < x:
+                can_weak = True
+                break
+        can_small = False
+        for y in Y:
+            if S[toy] < y:
+                can_small = True
+                break
+        if not (can_weak or can_small):
+            return -1
+
+    # Determine the case
+   
