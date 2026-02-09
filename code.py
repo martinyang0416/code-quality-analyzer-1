@@ -1,16 +1,16 @@
-import collections
-
-class Solution:
-    def longestSubarray(self, nums: list[int], limit: int) -> int:
-        max_deque = collections.deque()
-        min_deque = collections.deque()
-        left = 0
-        max_len = 0
-        
-        for right in range(len(nums)):
-            # Maintain max_deque for current window's max
-            while max_deque and nums[right] >= nums[max_deque[-1]]:
-                max_deque.pop()
-            max_deque.append(right)
-            
-            # Maintain mi
+def getPermutation(n, k):
+    factorials = [1] * n
+    for i in range(1, n):
+        factorials[i] = factorials[i-1] * i
+    
+    k -= 1  # Convert to zero-based index
+    numbers = list(map(str, range(1, n+1)))
+    result = []
+    
+    for i in range(n):
+        index = k // factorials[n-1 - i]
+        result.append(numbers[index])
+        numbers.pop(index)
+        k %= factorials[n-1 - i]
+    
+    return ''.join(result)
