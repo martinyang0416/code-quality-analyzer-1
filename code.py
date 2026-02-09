@@ -1,14 +1,9 @@
-n = int(input())
-days = list(map(int, input().split()))
-max_count = 0
-current = 0
-
-for day in days:
-    if day == 1:
-        current += 1
-        if current > max_count:
-            max_count = current
-    else:
-        current = 0
-
-print(max_count)
+R, C = map(int, input().split())
+total = 0
+for _ in range(R):
+    row = input().strip()
+    for i in range(C):
+        if row[i] == 'B':
+            if i == 0 or row[i-1] == '.':
+                total += 1
+print(total)
