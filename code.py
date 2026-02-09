@@ -1,21 +1,19 @@
 import sys
-input = sys.stdin.readline
+import time
+import itertools
+from itertools import accumulate, product, permutations, combinations
+import collections
+from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
+from functools import lru_cache
+import math
+from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
+import fractions
+from typing import List, Tuple
+import numpy as np
+import random
+import heapq
+from heapq import *
+from dataclasses import dataclass
 
-def solve():
-    n,x,y=map(int,input().split())
-    arr = []
-    for i in range(1,n):
-        if (y-x)%i==0:
-            step = (y-x)//i
-            smol = x%step
-            if smol == 0:
-                smol+=step
-            total = smol+step*(n-1)
-            arr.append((max(total,y),step))
-        
-    total,step = min(arr)
-    print(*range(total-step*(n-1),total+1,step))
-
-if __name__=="__main__":
-    for _ in range(int(input())):
-        solve()
+import builtins
+import re
