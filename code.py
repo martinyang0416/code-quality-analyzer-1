@@ -1,14 +1,14 @@
-def maximumSwap(num):
-    digits = list(str(num))
-    n = len(digits)
+def solution(A):
+    n = len(A)
+    visited = [False] * n
+    max_length = 0
     for i in range(n):
-        max_digit = digits[i]
-        max_pos = -1
-        for j in range(n-1, i, -1):
-            if digits[j] > max_digit:
-                max_digit = digits[j]
-                max_pos = j
-        if max_pos != -1:
-            digits[i], digits[max_pos] = digits[max_pos], digits[i]
-            return int(''.join(digits))
-    return num
+        if not visited[i]:
+            current = i
+            count = 0
+            while not visited[current]:
+                visited[current] = True
+                current = A[current]
+                count += 1
+            max_length = max(max_length, count)
+    return max_length
