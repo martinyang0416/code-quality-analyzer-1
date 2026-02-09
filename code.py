@@ -1,20 +1,21 @@
+def is_monotonic(s):
+    n = len(s)
+    if n <= 1:
+        return True
+    increasing = True
+    decreasing = True
+    for i in range(n - 1):
+        if s[i] > s[i+1]:
+            increasing = False
+        if s[i] < s[i+1]:
+            decreasing = False
+    return increasing or decreasing
+
 def main():
     s = input().strip()
-    row1 = {'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'}
-    row2 = {'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'}
-    row3 = {'Z', 'X', 'C', 'V', 'B', 'N', 'M'}
-    
-    total = 0
-    for c in s:
-        if c in row1:
-            total += 1
-        elif c in row2:
-            total += 2
-        elif c in row3:
-            total += 3
-        else:
-            # This case shouldn't occur per problem constraints
-            pass
-    
-    if total % 2 == 0:
- 
+    for i in range(1, len(s)):
+        part1 = s[:i]
+        part2 = s[i:]
+        if is_monotonic(part1) and is_monotonic(part2):
+            print("YES")
+            ret
