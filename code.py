@@ -1,21 +1,3 @@
-def is_monotonic(s):
-    n = len(s)
-    if n <= 1:
-        return True
-    increasing = True
-    decreasing = True
-    for i in range(n - 1):
-        if s[i] > s[i+1]:
-            increasing = False
-        if s[i] < s[i+1]:
-            decreasing = False
-    return increasing or decreasing
+Okay, I need to solve this programming problem. Let's see what the question is. The input is an integer a between 0 and 35, and I have to output another integer. The examples show that when the input is 3, the output is 8, and for 10 it's 1024. Hmm, those numbers look familiar. Let me think... Oh wait, 3 gives 2^3 which is 8, and 10 gives 2^10 which is 1024. So maybe the problem is to compute 2 raised to the power of a?
 
-def main():
-    s = input().strip()
-    for i in range(1, len(s)):
-        part1 = s[:i]
-        part2 = s[i:]
-        if is_monotonic(part1) and is_monotonic(part2):
-            print("YES")
-            ret
+But wait, let me make sure. Let me check the constraints again. The input a
