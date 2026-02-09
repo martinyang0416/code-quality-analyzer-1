@@ -1,19 +1,20 @@
-def putaway(A, B, T, X, Y, W, S):
-    # Since we are handling T=2 and A+B=2, T is fixed to 2
-    # Check feasibility for each toy
-    for toy in range(2):
-        can_weak = False
-        for x in X:
-            if W[toy] < x:
-                can_weak = True
-                break
-        can_small = False
-        for y in Y:
-            if S[toy] < y:
-                can_small = True
-                break
-        if not (can_weak or can_small):
-            return -1
+import bisect
 
-    # Determine the case
-   
+def putaway(A, B, T, X, Y, W, S):
+    # Precompute can_weak and can_small for each toy.
+    X_sorted = sorted(X) if A > 0 else []
+    Y_sorted = sorted(Y) if B > 0 else []
+    
+    can_weak = []
+    can_small = []
+    for i in range(T):
+        w = W[i]
+        s = S[i]
+        cw = False
+        if A > 0:
+            idx = bisect.bisect_right(X_sorted, w)
+            if idx < len(X_sorted):
+                cw = True
+        cs = False
+        if B > 0:
+            idx = bisect.bi
