@@ -1,20 +1,15 @@
-n, m = map(int, input().split())
+a, b, x1, y1, x2, y2 = map(int, input().split())
 
-groups = [[] for _ in range(n + 1)]
+s1 = x1 + y1
+s2 = x2 + y2
+k1 = s1 // (2 * a)
+k2 = s2 // (2 * a)
+lines_a = abs(k2 - k1)
 
-for _ in range(m):
-    a_i, b_i = map(int, input().split())
-    delta = (b_i - a_i) % n
-    groups[a_i].append(delta)
+d1 = x1 - y1
+d2 = x2 - y2
+m1 = d1 // (2 * b)
+m2 = d2 // (2 * b)
+lines_b = abs(m2 - m1)
 
-max_time = [0] * (n + 1)
-
-for a in range(1, n + 1):
-    deltas = groups[a]
-    if not deltas:
-        continue
-    deltas_sorted = sorted(deltas, reverse=True)
-    current_max = 0
-    for i in range(len(deltas_sorted)):
-        current = i * n + deltas_sorted[i]
-        current_max = max(current_max, current)
+print(max(lines_a, lines_b))
