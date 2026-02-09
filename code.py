@@ -1,19 +1,8 @@
-def maxLength(arr):
-    # Preprocess to filter out strings with duplicate characters
-    unique = []
-    for s in arr:
-        if len(set(s)) == len(s):
-            unique.append(s)
-    
-    # Generate masks and lengths
-    masks = []
-    for s in unique:
-        mask = 0
-        for c in s:
-            mask |= 1 << (ord(c) - ord('a'))
-        masks.append( (mask, len(s)) )
-    
-    # Dynamic programming to find maximum length
-    dp = {0: 0}  # mask: max_length
-    for mask, length in masks:
-  
+def kLengthApart(nums, k):
+    prev = -float('inf')
+    for i, num in enumerate(nums):
+        if num == 1:
+            if i - prev - 1 < k and prev != -float('inf'):
+                return False
+            prev = i
+    return True
