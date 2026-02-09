@@ -1,24 +1,14 @@
-import sys
+import bisect
+
+def compute_makespan(toys_values, robots_capacities):
+    counts = [0] * len(robots_capacities)
+    for val in toys_values:
+        idx = bisect.bisect_right(robots_capacities, val) - 1
+        if idx < 0:
+            return float('inf')  # Should not happen if initial checks passed
+        counts[idx] += 1
+    return max(counts) if counts else 0
 
 def putaway(A, B, T, X, Y, W, S):
-    # Compute max_X and max_Y
-    max_X = -float('inf')
-    if A > 0:
-        max_X = max(X)
-    max_Y = -float('inf')
-    if B > 0:
-        max_Y = max(Y)
-    
-    W_only = 0
-    S_only = 0
-    both = 0
-    all_eligible = True
-    
-    for i in range(T):
-        is_weak = (A > 0 and W[i] < max_X)
-        is_small = (B > 0 and S[i] < max_Y)
-        if not is_weak and not is_small:
-            return -1
-        
-        if is_weak and not is_small:
-  
+    if A == 0 and B == 0:
+        return -1  # per problem constraints, but should be checked earlier
