@@ -1,19 +1,20 @@
-from collections import defaultdict
+MOD = 10**9 + 7
 
-def count_balanced_substrings(s):
-    balance = 0
-    prefix_counts = defaultdict(int)
-    prefix_counts[0] = 1  # To handle the empty prefix
+def main():
+    import sys
+    n, k = map(int, sys.stdin.readline().split())
+    
+    # Precompute combinatorial numbers
+    max_n = n
+    comb = [[0]*(max_n + 1) for _ in range(max_n + 1)]
+    for i in range(max_n + 1):
+        comb[i][0] = 1
+        for j in range(1, i + 1):
+            comb[i][j] = (comb[i-1][j-1] + comb[i-1][j]) % MOD
+    
     result = 0
-
-    for char in s:
-        if char == 'a':
-            balance += 1
-        else:
-            balance -= 1
-
-        # Add the number of times this balance was seen before to the result
-        result += prefix_counts.get(balance, 0)
-
-        # Update the count for the current balance
-        prefix_count
+    for s in range(n+1):
+        for t in range(n+1):
+            sign = (-1) ** (s + t)
+            c_s = comb[n][s]
+    
