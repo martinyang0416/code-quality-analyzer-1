@@ -1,19 +1,22 @@
-def process(arr):
-    while True:
-        if not arr:
-            break
-        runs = []
-        current = arr[0]
-        count = 1
-        for num in arr[1:]:
-            if num == current:
-                count += 1
-            else:
-                runs.append((current, count))
-                current = num
-                count = 1
-        runs.append((current, count))
-        to_remove = [i for i, (c, cnt) in enumerate(runs) if cnt >= 3]
-        if not to_remove:
-            break
-        
+import heapq
+
+def main():
+    w, h, limit = map(int, input().split())
+    grid = []
+    for _ in range(h):
+        row = input().strip().split()
+        grid.append(row)
+    
+    # Find the start and end positions
+    start = None
+    end = None
+    for j in range(w):
+        if grid[0][j] == 'S':
+            start = (0, j)
+    for j in range(w):
+        if grid[-1][j] == 'T':
+            end = (h-1, j)
+    
+    # Create the cost grid
+    cost = [[0 for _ in range(w)] for _ in range(h)]
+    for 
