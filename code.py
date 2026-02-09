@@ -1,19 +1,21 @@
-import itertools
+import sys
 
-heroes = ['Anka', 'Chapay', 'Cleo', 'Troll', 'Dracul', 'Snowy', 'Hexadecimal']
-hero_to_idx = {name: i for i, name in enumerate(heroes)}
+def minimal_cuts():
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    for i in range(1, T + 1):
+        N = int(input[i])
+        if N == 1:
+            print(0)
+            continue
+        sum_so_far = 1
+        count = 1
+        while sum_so_far < N:
+            next_num = min(sum_so_far + 1, N - sum_so_far)
+            sum_so_far += next_num
+            count += 1
+            if sum_so_far == N:
+                break
+        print(count - 1)
 
-n = int(input())
-likes = [set() for _ in range(7)]
-for _ in range(n):
-    p, _, q = input().split()
-    p_idx = hero_to_idx[p]
-    q_idx = hero_to_idx[q]
-    likes[p_idx].add(q_idx)
-
-a, b, c = map(int, input().split())
-
-candidates = []
-
-for assignment in itertools.product([0, 1, 2], repeat=7):
-    if 0 not in assignment or 1 not in assignment 
+minimal_cuts()
