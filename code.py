@@ -1,26 +1,16 @@
 def main():
     import sys
     input = sys.stdin.read().split()
-    ptr = 0
-    N = int(input[ptr])
-    ptr += 1
-    M = int(input[ptr])
-    ptr += 1
-    K = int(input[ptr])
-    ptr += 1
-
-    A = list(map(int, input[ptr:ptr+N]))
-    ptr += N
-
-    for _ in range(M):
-        L = int(input[ptr])
-        ptr += 1
-        R = int(input[ptr])
-        ptr += 1
-        sub = A[L-1:R]
-        sub.sort()
-        count = 0
-        prev = None
-        for num in sub:
-            if prev is None:
-           
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N = int(input[idx])
+        idx += 1
+        # Read N elements but don't need them as all pairs are valid
+        idx += N
+        result = N * (N - 1) // 2
+        print(result)
+        
+if __name__ == "__main__":
+    main()
