@@ -1,20 +1,18 @@
-n = int(input())
-a, b = map(int, input().split())
-c = int(input())
-toppings = [int(input()) for _ in range(n)]
-toppings.sort(reverse=True)
+n, m = map(int, input().split())
+k = int(input())
+edges = [tuple(map(int, input().split())) for _ in range(k)]
 
-prefix = [0] * (n + 1)
-for i in range(1, n + 1):
-    prefix[i] = prefix[i - 1] + toppings[i - 1]
+# Build adjacency list for connectivity (undirected, ignoring duplicates)
+adj = [[] for _ in range(n + 1)]
+for u, v, c in edges:
+    if v not in adj[u]:
+        adj[u].append(v)
+    if u not in adj[v]:
+        adj[v].append(u)
 
-max_ratio = c / a  # k=0 case
-
-for k in range(1, n + 1):
-    total_cal = c + prefix[k]
-    price = a + k * b
-    current_ratio = total_cal / price
-    if current_ratio > max_ratio:
-        max_ratio = current_ratio
-
-print(int(max_ratio))
+# Find connected components using BFS
+visited = [False] * (n + 1)
+components = []
+for node in range(1, n + 1):
+    if not visited[node]:
+        queue = [node]
