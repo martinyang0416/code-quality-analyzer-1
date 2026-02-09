@@ -1,14 +1,14 @@
-def length_of_longest_substring(s):
-    char_map = {}
-    max_length = 0
-    left = 0
+def countSubstrings(s):
+    def expand(l, r):
+        count = 0
+        while l >= 0 and r < len(s) and s[l] == s[r]:
+            count += 1
+            l -= 1
+            r += 1
+        return count
     
-    for right in range(len(s)):
-        current_char = s[right]
-        if current_char in char_map and char_map[current_char] >= left:
-            left = char_map[current_char] + 1
-        char_map[current_char] = right
-        current_length = right - left + 1
-        if current_length > max_length:
-            max_length = current_length
-    return max_length
+    res = 0
+    for i in range(len(s)):
+        res += expand(i, i)    # odd length palindromes
+        res += expand(i, i+1)  # even length palindromes
+    return res
