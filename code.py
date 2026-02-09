@@ -1,20 +1,19 @@
-n, l, r = map(int, input().split())
-l -= 1
-r -= 1
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
+k, d, t = map(int, input().split())
 
-# Check elements outside the l..r range
-for i in range(n):
-    if i < l or i > r:
-        if a[i] != b[i]:
-            print("LIE")
-            exit()
+m = (k + d - 1) // d
+cycle_len = m * d
+on_time = k
+off_time = cycle_len - on_time
+progress_per_cycle = 2 * on_time + off_time
+total_progress_needed = 2 * t
 
-# Check if the subarrays are permutations
-a_sub = a[l:r+1]
-b_sub = b[l:r+1]
-if sorted(a_sub) == sorted(b_sub):
-    print("TRUTH")
+full_cycles = total_progress_needed // progress_per_cycle
+remainder = total_progress_needed % progress_per_cycle
+
+if remainder == 0:
+    total_time = full_cycles * cycle_len
 else:
-    print("LIE")
+    if remainder <= 2 * on_time:
+        time_add = remainder / 2.0
+    else:
+        time_add = on_time + (remainder - 2 * on
