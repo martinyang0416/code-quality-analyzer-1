@@ -1,19 +1,20 @@
-MOD = 10**9 + 7
-
-def kConcatenationMaxSum(arr, k):
-    # Compute Kadane's algorithm result for maximum subarray sum (allowing empty)
-    max_kadane = current = 0
-    for num in arr:
-        current = max(num, current + num)
-        max_kadane = max(max_kadane, current)
+def getWinner(arr, k):
+    max_val = max(arr)
+    if k == 0:
+        return arr[0]
     
-    total_sum = sum(arr)
+    current_winner = max(arr[0], arr[1])
+    consecutive = 1
+    if current_winner == max_val:
+        return current_winner
     
-    # Compute maximum prefix sum
-    max_prefix = current = 0
-    for num in arr:
-        current += num
-        max_prefix = max(max_prefix, current)
+    from collections import deque
+    queue = deque(arr[2:])
+    queue.append(min(arr[0], arr[1]))
     
-    # Compute maximum suffix sum
-    ma
+    while queue:
+        challenger = queue.popleft()
+        if current_winner > challenger:
+            consecutive += 1
+            if consecutive == k:
+                return
