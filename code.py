@@ -1,11 +1,17 @@
-def maxSatisfaction(satisfaction):
-    satisfaction.sort()
-    max_sum = 0
-    total_sum = 0
-    current_sum = 0
-    for s in reversed(satisfaction):
-        total_sum += s
-        current_sum += total_sum
-        if current_sum > max_sum:
-            max_sum = current_sum
-    return max_sum
+def maxProfit(k, prices):
+    if not prices or k == 0:
+        return 0
+    n = len(prices)
+    if k >= n // 2:
+        # Greedy approach for unlimited transactions
+        max_profit = 0
+        for i in range(1, n):
+            if prices[i] > prices[i-1]:
+                max_profit += prices[i] - prices[i-1]
+        return max_profit
+    else:
+        # DP approach with limited transactions
+        buy = [-float('inf')] * (k + 1)
+        sell = [0] * (k + 1)
+        for price in prices:
+      
