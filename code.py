@@ -1,18 +1,14 @@
-t = int(input())
-for _ in range(t):
-    m = int(input())
-    b = list(map(int, input().split()))
-    b.sort(reverse=True)
-    mia = 0
-    friend = 0
-    for i in range(m):
-        if i % 2 == 0:
-            mia += b[i]
-        else:
-            friend += b[i]
-    if mia > friend:
-        print("WIN")
-    elif mia < friend:
-        print("LOSE")
+n = int(input())
+days = list(map(int, input().split()))
+max_count = 0
+current = 0
+
+for day in days:
+    if day == 1:
+        current += 1
+        if current > max_count:
+            max_count = current
     else:
-        print("DRAW")
+        current = 0
+
+print(max_count)
