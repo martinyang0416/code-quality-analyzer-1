@@ -1,18 +1,16 @@
-def findReplaceString(s, indexes, sources, targets):
-    valid = []
-    n = len(indexes)
-    for i in range(n):
-        start = indexes[i]
-        src = sources[i]
-        trg = targets[i]
-        src_len = len(src)
-        end = start + src_len
-        if end > len(s):
-            continue
-        if s[start:end] == src:
-            valid.append((start, end, trg))
-    valid.sort(key=lambda x: x[0])
-    res = []
-    current = 0
-    for s_start, s_end, t in valid:
-        res.append(s[current:s_s
+from typing import List
+from collections import deque
+
+class Solution:
+    def numEnclaves(self, A: List[List[int]]) -> int:
+        rows = len(A)
+        if rows == 0:
+            return 0
+        cols = len(A[0])
+        q = deque()
+        
+        # Collect all perimeter land cells and start BFS from them
+        for i in range(rows):
+            for j in range(cols):
+                if (i == 0 or i == rows - 1 or j == 0 or j == cols - 1) and A[i][j] == 1:
+                    q.append((i, j)
