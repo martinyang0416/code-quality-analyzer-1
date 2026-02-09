@@ -1,18 +1,20 @@
 import math
 
-def cross(o, a, b):
-    return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
-
 def convex_hull(points):
     points = sorted(points)
+    if len(points) <= 1:
+        return points
     lower = []
     for p in points:
-        while len(lower) >= 2 and cross(lower[-2], lower[-1], p) <= 0:
-            lower.pop()
+        while len(lower) >= 2:
+            x1, y1 = lower[-2]
+            x2, y2 = lower[-1]
+            x3, y3 = p
+            cross_val = (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1)
+            if cross_val <= 0:
+                lower.pop()
+            else:
+                break
         lower.append(p)
     upper = []
-    for p in reversed(points):
-        while len(upper) >= 2 and cross(upper[-2], upper[-1], p) <= 0:
-            upper.pop()
-        upper.append(p)
-    return lower[:-1
+    for p in reversed(point
