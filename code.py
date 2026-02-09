@@ -1,21 +1,15 @@
-import math
-
-def numSquares(n):
-    # Check if n is a perfect square
-    if math.isqrt(n) ** 2 == n:
-        return 1
+def maximumSum(arr):
+    if not arr:
+        return 0
+    max_sum = arr[0]
+    no_deletion_prev = arr[0]
+    with_deletion_prev = float('-inf')
     
-    # Check if n can be expressed as the sum of two squares
-    max_i = math.isqrt(n)
-    for i in range(1, max_i + 1):
-        remainder = n - i * i
-        if math.isqrt(remainder) ** 2 == remainder:
-            return 2
-    
-    # Check if n is of the form 4^k*(8m +7)
-    while n % 4 == 0:
-        n //= 4
-    if n % 8 == 7:
-        return 4
-    
-    # Otherwise, return 3
+    for i in range(1, len(arr)):
+        current = arr[i]
+        no_deletion = max(current, no_deletion_prev + current)
+        with_deletion = max(no_deletion_prev, with_deletion_prev + current)
+        current_max = max(no_deletion, with_deletion)
+        if current_max > max_sum:
+            max_sum = current_max
+        no_deletion_prev, with_d
