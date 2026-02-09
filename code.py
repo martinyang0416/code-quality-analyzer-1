@@ -1,14 +1,14 @@
-def solution(A):
-    n = len(A)
-    visited = [False] * n
-    max_length = 0
-    for i in range(n):
-        if not visited[i]:
-            current = i
-            count = 0
-            while not visited[current]:
-                visited[current] = True
-                current = A[current]
-                count += 1
-            max_length = max(max_length, count)
-    return max_length
+def mask_pii(S):
+    if '@' in S:
+        parts = S.split('@')
+        local_part = parts[0].lower()
+        domain_part = parts[1].split('.')
+        masked_name = local_part[0] + '*****' + local_part[-1]
+        masked_domain = '.'.join([part.lower() for part in domain_part])
+        return f"{masked_name}@{masked_domain}"
+    else:
+        digits = [c for c in S if c.isdigit()]
+        n = len(digits)
+        local = digits[-10:]
+        country = digits[:-10] if n > 10 else []
+        masked
