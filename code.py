@@ -1,19 +1,14 @@
-import sys
-import time
-import itertools
-from itertools import accumulate, product, permutations, combinations
-import collections
-from collections import Counter, OrderedDict, deque, defaultdict, ChainMap
-from functools import lru_cache
-import math
-from math import sqrt, sin, cos, tan, ceil, fabs, floor, gcd, exp, log, log2
-import fractions
-from typing import List, Tuple
-import numpy as np
-import random
-import heapq
-from heapq import *
-from dataclasses import dataclass
-
-import builtins
-import re
+def sm(s):
+    if len(s) % 2 == 1:
+        return s
+    s1 = sm(s[:len(s) // 2])
+    s2 = sm(s[len(s) // 2:])
+    if s1 < s2:
+        return s1 + s2
+    else:
+        return s2 + s1
+    
+if sm(input()) == sm(input()):
+    print("YES")
+else:
+    print("NO")
