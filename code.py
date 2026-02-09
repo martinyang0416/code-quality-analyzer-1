@@ -1,19 +1,20 @@
-import sys
-from sys import stdin
-from collections import defaultdict
+from collections import Counter
 
-def main():
-    sys.setrecursionlimit(1 << 25)
-    N, M = map(int, stdin.readline().split())
-    w = list(map(int, stdin.readline().split()))
-    total_sum = sum(w)
-    adj = [[] for _ in range(N+1)]
-    for _ in range(M):
-        u, v = map(int, stdin.readline().split())
-        adj[u].append(v)
-        adj[v].append(u)
+def flames_result(name1, name2):
+    # Process names and calculate remaining letters count
+    name1 = name1.upper().replace(' ', '')
+    name2 = name2.upper().replace(' ', '')
     
-    disc = [0] * (N + 1)
-    low = [0] * (N + 1)
-    parent = [0] * (N + 1)
-    sum_subtree = [0] * (N
+    cnt1 = Counter(name1)
+    cnt2 = Counter(name2)
+    
+    common = cnt1 & cnt2
+    cnt1.subtract(common)
+    cnt2.subtract(common)
+    
+    n = sum(cnt1.values()) + sum(cnt2.values())
+    
+    if n == 0:
+        return 'FRIENDS'  # Edge case when all letters are cancelled
+    
+    
