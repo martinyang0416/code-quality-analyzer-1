@@ -1,16 +1,20 @@
-def main():
-    import sys
-    X, Y = map(int, sys.stdin.readline().split())
-    max_n = Y
-    
-    # Compute smallest prime factors (spf) for all numbers up to max_n
-    spf = [0] * (max_n + 1)
-    for i in range(2, max_n + 1):
-        if spf[i] == 0:
-            spf[i] = i
-            for j in range(i * i, max_n + 1, i):
-                if spf[j] == 0:
-                    spf[j] = i
-    
-    # Compute the dp array where dp[n] is the maximum depth of the tree rooted at n
-    dp = [0] * (max_n +
+import sys
+sys.setrecursionlimit(1 << 25)
+
+class UnionFind:
+    def __init__(self, size):
+        self.parent = list(range(size))
+        self.rank = [1] * size
+
+    def find(self, x):
+        if self.parent[x] != x:
+            self.parent[x] = self.find(self.parent[x])
+        return self.parent[x]
+
+    def union(self, x, y):
+        x_root = self.find(x)
+        y_root = self.find(y)
+        if x_root == y_root:
+            return
+        if self.rank[x_root] < self.rank[y_root]:
+            
