@@ -1,25 +1,13 @@
-import sys
+s1 = input().strip()
+s2 = input().strip()
 
-def compute_max(arr, k):
-    max_p = -float('inf')
-    n = len(arr)
-    for i in range(n - k + 1):
-        product = 1
-        for j in range(i, i + k):
-            product *= arr[j]
-        if product > max_p:
-            max_p = product
-    return max_p
+vowels = {'a', 'e', 'i', 'o', 'u'}
 
-for line in sys.stdin:
-    line = line.strip()
-    if not line:
-        continue
-    parts = line.split()
-    if len(parts) < 2:
-        continue
-    n, k = map(int, parts)
-    if n == 0 and k == 0:
-        break
-    cards = []
-   
+v1 = [c for c in s1 if c in vowels]
+v2 = [c for c in s2 if c in vowels]
+
+def is_subsequence(a, b):
+    it = iter(b)
+    return all(c in it for c in a)
+
+print("Yes" if is_subsequence(v1, v2) else "No")
