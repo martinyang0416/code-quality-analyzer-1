@@ -1,10 +1,17 @@
 n = int(input())
-nums = list(map(int, input().split()))
+A = list(map(int, input().split()))
+visited = [False] * n
+swap_count = 0
 
 for i in range(n):
-    for j in range(i + 1, n):
-        s = nums[i] + nums[j]
-        if str(s) == str(s)[::-1]:
-            print(1)
-            exit()
-print(0)
+    if not visited[i]:
+        cycle_size = 0
+        j = i
+        while not visited[j]:
+            visited[j] = True
+            cycle_size += 1
+            j = A[j] - 1  # Convert to 0-based index
+        if cycle_size > 0:
+            swap_count += (cycle_size - 1)
+
+print(swap_count)
