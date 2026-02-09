@@ -1,22 +1,17 @@
-import sys
+n = int(input())
+arr = list(map(int, input().split()))
+total = sum(arr)
+dp = [0] * n
 
-def main():
-    input = sys.stdin.read
-    data = input().split()
-    idx = 0
-    T = int(data[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(data[idx])
-        idx +=1
-        C = list(map(int, data[idx:idx+N]))
-        idx +=N
-        current_mask = 0
-        even_masks = {0: 0}
-        odd_masks = {}
-        max_height = 0
-        for i in range(N):
-            c = C[i] - 1
-            current_mask ^= (1 << c)
-            current_parity = (i + 1) % 2
-            opposit
+dp[0] = arr[0]
+
+for i in range(1, n):
+    max_h = 0
+    for j in range(i):
+        current_max = min(arr[i], dp[j] - 1)
+        if current_max > max_h:
+            max_h = current_max
+    dp[i] = max_h
+
+sum_new = sum(dp)
+print(total - sum_new)
