@@ -1,19 +1,25 @@
-import numpy as np
+import bisect
 
 def main():
     import sys
-    N, K, T = map(int, sys.stdin.readline().split())
-    A = list(map(int, sys.stdin.readline().split()))
-    
-    # Compute count array for residues mod N
-    count = [0] * N
-    for r in range(N):
-        if r == 0:
-            count[r] = T // N
+    input = sys.stdin.read().split()
+    idx = 0
+    N = int(input[idx])
+    idx += 1
+    Q = int(input[idx])
+    idx += 1
+
+    S = input[idx]
+    idx += 1
+    special_str = input[idx]
+    idx +=1
+
+    # Parse the string to get L and R positions
+    L_positions = []
+    R_positions = []
+    for i in range(len(S)):
+        c = S[i]
+        if c == 'L':
+            L_positions.append(i+1)  # 1-based position
         else:
-            if r > T:
-                count[r] = 0
-            else:
-                count[r] = (T - r) // N + 1
-    
-    # Compute frequency array for each residue mod N of the initial activ
+            R_positions.append(i+1
