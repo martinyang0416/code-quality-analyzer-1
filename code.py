@@ -1,20 +1,20 @@
-import math
-
-def convex_hull(points):
-    points = sorted(points)
-    if len(points) <= 1:
-        return points
-    lower = []
-    for p in points:
-        while len(lower) >= 2:
-            x1, y1 = lower[-2]
-            x2, y2 = lower[-1]
-            x3, y3 = p
-            cross_val = (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1)
-            if cross_val <= 0:
-                lower.pop()
-            else:
-                break
-        lower.append(p)
-    upper = []
-    for p in reversed(point
+n = int(input())
+result = []
+for _ in range(n):
+    a, b, c, d, e = map(int, input().split())
+    
+    # Convert each number to a 2-bit binary string
+    def to_bits(x, max_val):
+        if max_val == 2:
+            return f"{x:02b}"
+        else:  # max_val is 3
+            return f"{x:02b}"
+    
+    bits = []
+    bits.append(to_bits(a, 2))
+    bits.append(to_bits(b, 2))
+    bits.append(to_bits(c, 2))
+    bits.append(to_bits(d, 3))
+    bits.append(to_bits(e, 3))
+    
+    bin_str = ''.join(bits)
