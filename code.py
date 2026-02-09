@@ -1,10 +1,14 @@
-n = int(input())
-counts = {'AC': 0, 'WA': 0, 'TLE': 0, 'RE': 0}
-for _ in range(n):
-    s = input().strip()
-    counts[s] += 1
+n, m = map(int, input().split())
+students = [tuple(map(int, input().split())) for _ in range(n)]
+checkpoints = [tuple(map(int, input().split())) for _ in range(m)]
 
-print(f"AC x {counts['AC']}")
-print(f"WA x {counts['WA']}")
-print(f"TLE x {counts['TLE']}")
-print(f"RE x {counts['RE']}")
+for a, b in students:
+    min_dist = float('inf')
+    best_j = 0
+    for idx in range(m):
+        c, d = checkpoints[idx]
+        dist = abs(a - c) + abs(b - d)
+        if dist < min_dist:
+            min_dist = dist
+            best_j = idx + 1
+    print(best_j)
