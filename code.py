@@ -1,15 +1,19 @@
 import sys
+import bisect
 
 def main():
     N = int(sys.stdin.readline())
     a = list(map(int, sys.stdin.readline().split()))
-    prefix = [0] * (N + 1)
-    for i in range(1, N+1):
-        prefix[i] = prefix[i-1] + a[i-1]
 
-    for current_i in range(1, N+1):
-        i = current_i
-        # Compute S: all subarrays that include i
-        S = [prefix[e] - prefix[s-1] for s in range(1, i+1) for e in range(i, N+1)]
-        # Compute T_left: all subarrays ending before i
-        T_left = [prefix[e] - prefix[s-1] fo
+    # Compute prefix sums
+    prefix = [0] * (N + 1)
+    for i in range(1, N + 1):
+        prefix[i] = prefix[i - 1] + a[i - 1]
+
+    for i in range(N):
+        # Current index is i (0-based)
+        L_list = prefix[0:i+1]
+        R_list = prefix[i+1:N+1]
+
+        # Compute S_group: all R-L for R in R_list, L in L_list
+        S_group = [R - L for L in L_list for R in R_li
