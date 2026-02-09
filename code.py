@@ -1,20 +1,13 @@
-import sys
-sys.setrecursionlimit(1 << 25)
+n, k = map(int, input().split())
 
-class UnionFind:
-    def __init__(self, size):
-        self.parent = list(range(size))
-        self.rank = [1] * size
+count_div3 = n // 3
 
-    def find(self, x):
-        if self.parent[x] != x:
-            self.parent[x] = self.find(self.parent[x])
-        return self.parent[x]
-
-    def union(self, x, y):
-        x_root = self.find(x)
-        y_root = self.find(y)
-        if x_root == y_root:
-            return
-        if self.rank[x_root] < self.rank[y_root]:
-            
+if k <= count_div3:
+    print(3 * k)
+else:
+    m = k - count_div3
+    # Calculate the m-th non-divisible number
+    g = (m - 1) // 2
+    r = (m - 1) % 2 + 1
+    x = 3 * g + r
+    print(x)
