@@ -1,16 +1,14 @@
-import math
+import sys
 
-T = int(input())
-for _ in range(T):
-    N, L = map(int, input().split())
-    m = 0
-    while True:
-        m += 1
-        total = 0
-        for i in range(1, N + 1):
-            if i > m:
-                continue
-            total += math.comb(m, i)
-        if total >= L:
-            print(m)
-            break
+def main():
+    input = sys.stdin.read().split()
+    T = int(input[0])
+    idx = 1
+    for _ in range(T):
+        N = int(input[idx])
+        K = int(input[idx+1])
+        idx += 2
+        print(K // N)
+
+if __name__ == "__main__":
+    main()
