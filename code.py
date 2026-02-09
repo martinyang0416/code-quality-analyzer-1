@@ -1,18 +1,17 @@
-from collections import defaultdict
-
-class Solution:
-    def queryString(self, S: str, N: int) -> bool:
-        m = N.bit_length()
-        len_S = len(S)
-        subs = defaultdict(set)
-        
-        for l in range(1, m + 1):
-            if l > len_S:
-                continue
-            for i in range(len_S - l + 1):
-                sub = S[i:i+l]
-                subs[l].add(sub)
-        
-        for l in range(1, m):
-            expected = 1 << (l - 1)
-            max_possible = len_S - l +
+def findSubstringInWraproundString(p):
+    n = len(p)
+    if n == 0:
+        return 0
+    max_run = [1] * n
+    for j in range(n-2, -1, -1):
+        if (ord(p[j+1]) - ord(p[j])) % 26 == 1:
+            max_run[j] = max_run[j+1] + 1
+        else:
+            max_run[j] = 1
+    max_char = [0] * 26
+    for j in range(n):
+        c = p[j]
+        idx = ord(c) - ord('a')
+        if max_run[j] > max_char[idx]:
+            max_char[idx] = max_run[j]
+    return sum(max_char)
