@@ -1,15 +1,27 @@
-n, m = map(int, input().split())
+n_players = int(input())
+A = 0
+P = 0
 
-max_a = -float('inf')
-for _ in range(n):
-    x, y = map(int, input().split())
-    if x > max_a:
-        max_a = x
+for _ in range(n_players):
+    name, cat = input().split()
+    if cat == 'amateur':
+        A += 1
+    else:
+        P += 1
 
-min_b = float('inf')
-for _ in range(m):
-    x, y = map(int, input().split())
-    if x < min_b:
-        min_b = x
+max_ap = max(A, P)
+min_ap = min(A, P)
 
-print("YES" if max_a < min_b else "NO")
+n = 1
+while True:
+    if n % 2 == 0:
+        half = (n * n) // 2
+        if max_ap <= half:
+            print(n)
+            break
+    else:
+        large_half = (n * n + 1) // 2
+        small_half = (n * n - 1) // 2
+        if max_ap <= large_half and min_ap <= small_half:
+            print(n)
+  
