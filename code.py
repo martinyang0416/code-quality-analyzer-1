@@ -1,22 +1,21 @@
-from collections import defaultdict
+from functools import lru_cache
 
 def main():
     import sys
-    s = sys.stdin.readline().strip()
-    t = sys.stdin.readline().strip()
+    n = int(sys.stdin.readline())
+    lst = list(map(int, sys.stdin.readline().split()))
     
-    # Compute t_count
-    t_count = defaultdict(int)
-    for c in t:
-        t_count[c] +=1
+    used_numbers = set()
+    for num in lst:
+        if num != 0:
+            used_numbers.add(num)
     
-    # Pre-check if s has enough of each character
-    s_total = defaultdict(int)
-    for c in s:
-        s_total[c] += 1
-    for c in t_count:
-        if s_total[c] < t_count[c]:
-            print(0)
-            return
+    pre_parity = []
+    for num in lst:
+        if num == 0:
+            pre_parity.append(None)
+        else:
+            pre_parity.append(num % 2)
     
-    # Initialize variables for slidi
+    missing_numbers = [x for x in range(1, n+1) if x not in used_numbers]
+    even_cou
