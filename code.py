@@ -1,21 +1,19 @@
-def can_reach(D, stones):
-    n = len(stones)
-    if n == 0:
-        return False
-    current = stones[0]
-    i = 0
-    while i < n - 1:
-        low = i + 1
-        high = n - 1
-        best = -1
-        while low <= high:
-            mid = (low + high) // 2
-            if stones[mid] - current <= D:
-                best = mid
-                low = mid + 1
-            else:
-                high = mid - 1
-        if best == -1:
-            return False
-        current = stones[best]
-        i = b
+S = input().strip()
+
+balance_low = 0
+balance_high = 0
+global_min = 0
+global_max = 0
+
+for c in S:
+    if c == '0':
+        new_low = balance_low + 1
+        new_high = balance_high + 1
+        new_gmin = min(global_min, new_low)
+        new_gmax = max(global_max, new_high)
+        balance_low, balance_high = new_low, new_high
+        global_min, global_max = new_gmin, new_gmax
+    elif c == '1':
+        new_low = balance_low - 1
+        new_high = balance_high - 1
+        new_gmin = min(global_mi
