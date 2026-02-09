@@ -1,16 +1,21 @@
-n, k = map(int, input().split())
-teams = [tuple(map(int, input().split())) for _ in range(n)]
-sorted_teams = sorted(teams, key=lambda x: (-x[0], x[1]))
+n = int(input())
+a = list(map(int, input().split()))
+prefix = [0] * (n + 1)
+for i in range(1, n + 1):
+    prefix[i] = prefix[i - 1] + max(0, a[i - 1])
 
-groups = []
-current_group = []
-for team in sorted_teams:
-    if not current_group:
-        current_group.append(team)
-    else:
-        last_p, last_t = current_group[0]
-        if team[0] == last_p and team[1] == last_t:
-            current_group.append(team)
-        else:
-            groups.append(current_group)
-            current_group = [te
+from collections import defaultdict
+d = defaultdict(list)
+for idx, num in enumerate(a):
+    d[num].append(idx)
+
+max_sum = -float('inf')
+best_i = best_j = -1
+
+for v in d:
+    indices = d[v]
+    if len(indices) < 2:
+        continue
+    first_i = indices[0]
+    last_j = indices[-1]
+    current_sum = (a[first_i] + a[last_j]) + (prefix[last_j] - pref
