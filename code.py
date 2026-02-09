@@ -1,33 +1,18 @@
-import math
+import sys
+from collections import deque
 
-n, p, w, d = map(int, input().split())
+def main():
+    sys.setrecursionlimit(1 << 25)
+    n = int(sys.stdin.readline())
+    edges = []
+    adj = [[] for _ in range(n+1)]
+    initial_t = [0] * (n)  # 1-based to n-1
+    for i in range(n-1):
+        u, v, t = map(int, sys.stdin.readline().split())
+        edges.append((u, v))
+        adj[u].append((v, i+1))
+        adj[v].append((u, i+1))
+        initial_t[i+1] = t
 
-if p == 0:
-    print(0, 0, n)
-    exit()
-
-rem_p = p % d
-g = math.gcd(w, d)
-
-if rem_p % g != 0:
-    print(-1)
-    exit()
-
-a = w // g
-b = d // g
-rem_p_div_g = rem_p // g
-
-if b == 1:
-    x0 = 0
-else:
-    inv_a = pow(a, -1, b)
-    x0 = (rem_p_div_g * inv_a) % b
-
-step = d // g
-x_max = min(p // w, n)
-denominator = w - d
-numerator = p - n * d
-x_min = max(0, (numerator + denominator - 1) // denominator) if denominator != 0 else 0
-
-if x_max < x0:
-    p
+    # Root the tree at 1, compute parent and child relationships
+    parent = [0
