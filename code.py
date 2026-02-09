@@ -1,18 +1,18 @@
-# Read initial potential victims
-current = input().split()
-pairs = [current]
+import sys
+from collections import deque
 
-n = int(input())
-for _ in range(n):
-    murdered, replacement = input().split()
-    last = pairs[-1]
-    # Determine the new pair after replacement
-    if last[0] == murdered:
-        new_pair = [replacement, last[1]]
-    else:
-        new_pair = [last[0], replacement]
-    pairs.append(new_pair)
-
-# Output each pair
-for pair in pairs:
-    print(' '.join(pair))
+def main():
+    n = int(sys.stdin.readline())
+    p = list(map(int, sys.stdin.readline().split()))
+    adj = [[] for _ in range(n + 1)]  # 1-based indexing
+    for i in range(1, n + 1):
+        parent = p[i - 1]
+        if parent != 0:
+            adj[i].append(parent)
+            adj[parent].append(i)
+    degrees = [len(neighbors) for neighbors in adj]
+    q = deque()
+    processed = [False] * (n + 1)
+    result = []
+    for i in range(1, n + 1):
+      
