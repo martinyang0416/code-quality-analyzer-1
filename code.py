@@ -1,22 +1,22 @@
-import sys
-sys.setrecursionlimit(1 << 25)
+def find_occurrences(s, p):
+    m = len(p)
+    n = len(s)
+    occurrences = []
+    for i in range(n - m + 1):
+        if s[i:i+m] == p:
+            occurrences.append((i, i + m - 1))
+    return occurrences
 
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    n = int(input[idx])
-    idx += 1
-    q = int(input[idx])
-    idx += 1
+def compute_min_del(intervals):
+    if not intervals:
+        return 0
+    intervals.sort(key=lambda x: x[1])
+    count = 0
+    last = -1
+    for start, end in intervals:
+        if start > last:
+            count += 1
+            last = end
+    return count
 
-    parents = list(map(int, input[idx:idx + (n-1)]))
-    idx += (n-1)
-
-    children = [[] for _ in range(n + 1)]
-    for i in range(2, n + 1):
-        p = parents[i - 2]  # since parents list starts from p2 (i=2 uses index 0)
-        children[p].append(i)
-    
-    subtree_size = [1] * (n + 1)
-    stack = 
+def compute_covered(intervals, x)
