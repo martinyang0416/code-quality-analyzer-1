@@ -1,28 +1,11 @@
-import heapq
+n = int(input())
+positions = list(map(int, input().split()))
+positions.sort()
 
-n, m, k = map(int, input().split())
-grid = []
-start = None
-end = None
-for i in range(n):
-    row = input().strip()
-    grid.append(row)
-    for j in range(m):
-        if row[j] == 'S':
-            start = (i, j)
-        elif row[j] == 'T':
-            end = (i, j)
-si, sj = start
-ti, tj = end
+black = [i for i in range(1, n + 1) if i % 2 == 1]
+white = [i for i in range(1, n + 1) if i % 2 == 0]
 
-dirs = [(-1,0), (1,0), (0,-1), (0,1)]
+sum_black = sum(abs(p - t) for p, t in zip(positions, black))
+sum_white = sum(abs(p - t) for p, t in zip(positions, white))
 
-heap = []
-heapq.heappush(heap, (0, '', si, sj, 0))
-visited = {}
-
-found = False
-result = None
-
-while heap:
-    dist, path, i, j, bitmask = heapq.heappop(h
+print(min(sum_black, sum_white))
