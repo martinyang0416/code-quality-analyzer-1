@@ -1,19 +1,23 @@
-import sys
+MOD = 998244353
 
 def main():
-    n, q = map(int, sys.stdin.readline().split())
+    import sys
+    from collections import defaultdict
+
+    n, c = map(int, sys.stdin.readline().split())
     a = list(map(int, sys.stdin.readline().split()))
-    counts = [0] * 31
+    
+    count = defaultdict(int)
     for num in a:
-        d = num.bit_length() - 1
-        counts[d] += 1
-    for _ in range(q):
-        b = int(sys.stdin.readline())
-        remaining = b
-        coins = 0
-        for d in range(30, -1, -1):
-            if remaining <= 0:
-                break
-            current = 1 << d
-            if current > remaining:
-                contin
+        count[num] += 1
+
+    # Check if all colors are present
+    all_present = True
+    for x in range(1, c + 1):
+        if count.get(x, 0) == 0:
+            all_present = False
+            break
+
+    # Compute X for p=0
+    if not all_present:
+        X = 
