@@ -1,19 +1,26 @@
-n, m, k = map(int, input().split())
-moves = [tuple(map(int, input().split())) for _ in range(k)]
+def main():
+    import sys
+    m, *rest = list(map(int, sys.stdin.read().split()))
+    p = rest[:m]
+    min_p = min(p)
+    max_p = max(p)
+    
+    if min_p == max_p:
+        print("POSSIBLE")
+        return
+    
+    if (max_p - min_p) % 2 != 0:
+        print("IMPOSSIBLE")
+        return
+    
+    y = (max_p - min_p) // 2
+    x = (max_p + min_p) // 2
+    
+    for pi in p:
+        if pi != x + y and pi != x - y:
+            print("IMPOSSIBLE")
+            return
+    
+    print("POSSIBLE")
 
-added = set()
-result = 0
-
-for step in range(k):
-    i, j = moves[step]
-    added.add((i, j))
-    
-    # Check all four possible squares that could include (i,j)
-    
-    # Square 1: (i,j) is top-left
-    if i + 1 <= n and j + 1 <= m:
-        if (i, j + 1) in added and (i + 1, j) in added and (i + 1, j + 1) in added:
-            result = step + 1
-            break
-    
-    # Square 2: (i,j) is top-ri
+if __nam
