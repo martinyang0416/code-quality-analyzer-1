@@ -1,24 +1,33 @@
-import sys
+import math
 
-MOD = 10**9 + 7
+n, p, w, d = map(int, input().split())
 
-class FenwickTree:
-    def __init__(self, size):
-        self.n = size
-        self.tree = [0] * (self.n + 1)
-    
-    def update(self, idx, delta):
-        while idx <= self.n:
-            self.tree[idx] += delta
-            idx += idx & -idx
-    
-    def query(self, idx):
-        res = 0
-        while idx > 0:
-            res += self.tree[idx]
-            idx -= idx & -idx
-        return res
+if p == 0:
+    print(0, 0, n)
+    exit()
 
-def main():
-    n, q = map(int, sys.stdin.readline().split())
-    a = lis
+rem_p = p % d
+g = math.gcd(w, d)
+
+if rem_p % g != 0:
+    print(-1)
+    exit()
+
+a = w // g
+b = d // g
+rem_p_div_g = rem_p // g
+
+if b == 1:
+    x0 = 0
+else:
+    inv_a = pow(a, -1, b)
+    x0 = (rem_p_div_g * inv_a) % b
+
+step = d // g
+x_max = min(p // w, n)
+denominator = w - d
+numerator = p - n * d
+x_min = max(0, (numerator + denominator - 1) // denominator) if denominator != 0 else 0
+
+if x_max < x0:
+    p
