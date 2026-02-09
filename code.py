@@ -1,21 +1,22 @@
 import sys
 
-def minimal_cuts():
+def main():
     input = sys.stdin.read().split()
-    T = int(input[0])
-    for i in range(1, T + 1):
-        N = int(input[i])
-        if N == 1:
+    idx = 0
+    T = int(input[idx])
+    idx +=1
+    for _ in range(T):
+        N, K = int(input[idx]), int(input[idx+1])
+        idx +=2
+        A = list(map(int, input[idx:idx+N]))
+        idx +=N
+        if N ==0:
             print(0)
             continue
-        sum_so_far = 1
-        count = 1
-        while sum_so_far < N:
-            next_num = min(sum_so_far + 1, N - sum_so_far)
-            sum_so_far += next_num
-            count += 1
-            if sum_so_far == N:
-                break
-        print(count - 1)
-
-minimal_cuts()
+        dp = [0]*N
+        max_dp = [0]*N
+        for i in range(N):
+            current = A[i]
+            eligible_j = i - K -1
+            if eligible_j >=0:
+                curr
