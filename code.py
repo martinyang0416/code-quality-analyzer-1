@@ -1,23 +1,17 @@
-import sys
-from collections import deque
+n, m = map(int, input().split())
+A = list(map(int, input().split()))
+current_sum = sum(abs(a - i) for i, a in enumerate(A))
 
-def precompute_tetra(max_num):
-    tetra = []
-    n = 1
-    while True:
-        t = n * (n + 1) * (n + 2) // 6
-        if t > max_num:
-            break
-        tetra.append(t)
-        n += 1
-    tetra.sort(reverse=True)  # Sort in descending order for efficiency
-    return tetra
-
-def precompute_odd_tetra(max_num):
-    tetra = []
-    n = 1
-    while True:
-        t = n * (n + 1) * (n + 2) // 6
-        if t > max_num:
-            break
-        if n % 4 ==
+for _ in range(m):
+    max_delta = 0
+    best_i = best_j = -1
+    for i in range(n):
+        for j in range(i + 1, n):
+            old = abs(A[i] - i) + abs(A[j] - j)
+            new = abs(A[i] - j) + abs(A[j] - i)
+            delta = new - old
+            if delta > max_delta:
+                max_delta = delta
+                best_i, best_j = i, j
+    if max_delta <= 0:
+ 
