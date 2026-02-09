@@ -1,15 +1,13 @@
-p, q = map(int, input().split())
-required = list(map(int, input().split()))
-available = list(map(int, input().split()))
+def minimal_remaining_length(s):
+    stack = []
+    for char in s:
+        if stack and stack[-1] == char:
+            stack.pop()
+        else:
+            stack.append(char)
+    return len(stack)
 
-required.sort()
-available.sort()
-
-i = j = matches = 0
-while i < p and j < q:
-    if available[j] >= required[i]:
-        matches += 1
-        i += 1
-    j += 1
-
-print(p - matches)
+T = int(input())
+for _ in range(T):
+    s = input().strip()
+    print(minimal_remaining_length(s))
