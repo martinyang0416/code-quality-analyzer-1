@@ -1,21 +1,21 @@
-class FenwickTree:
-    def __init__(self, size):
-        self.n = size
-        self.tree = [0] * (self.n + 2)
+r1, r2 = map(int, input().split())
+c1, c2 = map(int, input().split())
+d1, d2 = map(int, input().split())
 
-    def update(self, index, delta):
-        while index <= self.n:
-            self.tree[index] += delta
-            index += index & -index
+sum_rows = r1 + r2
+sum_cols = c1 + c2
+sum_diag = d1 + d2
 
-    def query(self, index):
-        res = 0
-        while index > 0:
-            res += self.tree[index]
-            index -= index & -index
-        return res
-
-n = int(input())
-s = list(map(int, input().split()))
-fenwick = FenwickTree(n)
-for x in
+if sum_rows != sum_cols or sum_rows != sum_diag:
+    print(-1)
+else:
+    numerator = c1 + d1 - r2
+    if numerator % 2 != 0:
+        print(-1)
+    else:
+        a = numerator // 2
+        b = r1 - a
+        c = c1 - a
+        d = d1 - a
+        nums = [a, b, c, d]
+        if len(set(nums)) != 4 or any(num < 1 or num > 9 for num in num
