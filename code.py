@@ -1,12 +1,22 @@
-def findLength(A, B):
-    lenA, lenB = len(A), len(B)
-    dp = [0] * (lenB + 1)
-    max_len = 0
-    for i in range(lenA):
-        for j in reversed(range(lenB)):
-            if A[i] == B[j]:
-                dp[j+1] = dp[j] + 1
-                max_len = max(max_len, dp[j+1])
-            else:
-                dp[j+1] = 0
-    return max_len
+from collections import defaultdict
+
+def countTriplets(A):
+    pair_counts = defaultdict(int)
+    n = len(A)
+    for i in range(n):
+        for j in range(n):
+            val = A[i] & A[j]
+            pair_counts[val] += 1
+    
+    zero_counts = defaultdict(int)
+    for a in A:
+        mask = (~a) & 0xFFFF  # Ensure 16-bit mask
+        x = mask
+        while True:
+            zero_counts[x] += 1
+            if x == 0:
+                break
+            x = (x - 1) & mask
+    
+    total = 0
+    fo
