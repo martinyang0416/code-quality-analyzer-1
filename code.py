@@ -1,22 +1,26 @@
 import sys
+import math
+from collections import defaultdict
+
+MOD = 10**9 + 7
+
+def normalize(a, b):
+    if a == 0 and b == 0:
+        return (0, 0)
+    g = math.gcd(abs(a), abs(b))
+    p = a // g
+    q = b // g
+    if p != 0:
+        sign = p // abs(p)
+    else:
+        sign = q // abs(q) if q != 0 else 1
+    p //= sign
+    q //= sign
+    return (p, q)
 
 def main():
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx +=1
-    for _ in range(T):
-        N, K = int(input[idx]), int(input[idx+1])
-        idx +=2
-        A = list(map(int, input[idx:idx+N]))
-        idx +=N
-        if N ==0:
-            print(0)
-            continue
-        dp = [0]*N
-        max_dp = [0]*N
-        for i in range(N):
-            current = A[i]
-            eligible_j = i - K -1
-            if eligible_j >=0:
-                curr
+    N = int(sys.stdin.readline())
+    zero_count = 0
+    groups = defaultdict(int)
+    for _ in range(N):
+        a, b = map(int, sys.
