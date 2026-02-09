@@ -1,17 +1,17 @@
+def is_power_of_two(x):
+    if x == 0:
+        return False
+    return (x & (x - 1)) == 0
+
 n = int(input())
-A = list(map(int, input().split()))
-visited = [False] * n
-swap_count = 0
+nums = list(map(int, input().split()))
 
-for i in range(n):
-    if not visited[i]:
-        cycle_size = 0
-        j = i
-        while not visited[j]:
-            visited[j] = True
-            cycle_size += 1
-            j = A[j] - 1  # Convert to 0-based index
-        if cycle_size > 0:
-            swap_count += (cycle_size - 1)
+count_power = 0
+for num in nums:
+    if is_power_of_two(num):
+        count_power += 1
 
-print(swap_count)
+if count_power < 2:
+    print(n)
+else:
+    print(n - count_power)
