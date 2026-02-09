@@ -1,20 +1,15 @@
-MOD = 10**8 + 7
-max_n = 2000
+import sys
 
-# Precompute factorial and inverse factorial modulo MOD
-fact = [1] * (max_n + 1)
-for i in range(1, max_n + 1):
-    fact[i] = fact[i-1] * i % MOD
+n = int(sys.stdin.readline())
+points = [tuple(map(int, sys.stdin.readline().split())) for _ in range(n)]
 
-inv_fact = [1] * (max_n + 1)
-inv_fact[max_n] = pow(fact[max_n], MOD-2, MOD)
-for i in range(max_n - 1, -1, -1):
-    inv_fact[i] = inv_fact[i + 1] * (i + 1) % MOD
+for i in range(n):
+    a = points[i]
+    b = points[(i + 1) % n]
+    c = points[(i + 2) % n]
+    cross = (b[0] - a[0]) * (c[1] - b[1]) - (b[1] - a[1]) * (c[0] - b[0])
+    if cross < 0:
+        print(0)
+        sys.exit()
 
-def comb(n, k):
-    if n < 0 or k < 0 or k > n:
-        return 0
-    return fact[n] * inv_fact[k] % MOD * inv_fact[n - k] % MOD
-
-# Read input
-r, c, a1, a2, b1, b2
+print(1)
