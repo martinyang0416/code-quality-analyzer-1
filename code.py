@@ -1,17 +1,21 @@
-def decodeString(s: str) -> str:
-    stack = []
-    current_str = ''
-    current_num = 0
-    for c in s:
-        if c.isdigit():
-            current_num = current_num * 10 + int(c)
-        elif c == '[':
-            stack.append((current_str, current_num))
-            current_str = ''
-            current_num = 0
-        elif c == ']':
-            prev_str, num = stack.pop()
-            current_str = prev_str + current_str * num
-        else:
-            current_str += c
-    return current_str
+def strongPasswordChecker(s):
+    n = len(s)
+    missing_types = 3
+    if any(c.islower() for c in s):
+        missing_types -= 1
+    if any(c.isupper() for c in s):
+        missing_types -= 1
+    if any(c.isdigit() for c in s):
+        missing_types -= 1
+
+    # Compute runs of characters
+    runs = []
+    if n > 0:
+        current = s[0]
+        count = 1
+        for c in s[1:]:
+            if c == current:
+                count += 1
+            else:
+                runs.append(count)
+        
