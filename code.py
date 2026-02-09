@@ -1,20 +1,22 @@
+import math
 import sys
 
 def main():
-    n = int(sys.stdin.readline())
-    events = []
-    for _ in range(n):
-        s, d = map(int, sys.stdin.readline().split())
-        end = s + d - 1
-        events.append((end, s))
-    events.sort()
-    count = 0
-    last_end = -1
-    for end, s in events:
-        if s > last_end + 1:
-            count += 1
-            last_end = end
-    print(count)
-
-if __name__ == "__main__":
-    main()
+    input = sys.stdin.read().split()
+    idx = 0
+    T = int(input[idx])
+    idx += 1
+    for _ in range(T):
+        N = int(input[idx])
+        idx += 1
+        arr = list(map(int, input[idx:idx+N]))
+        idx += N
+        overall_gcd = arr[0]
+        for num in arr[1:]:
+            overall_gcd = math.gcd(overall_gcd, num)
+        if overall_gcd != 1:
+            print(-1)
+        else:
+            current_gcd = 0
+            count = 0
+            for num i
