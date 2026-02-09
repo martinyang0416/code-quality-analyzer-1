@@ -1,12 +1,10 @@
-m, b = map(int, input().split())
-prices = list(map(int, input().split()))
-prices.sort()
-total = 0
-count = 0
-for price in prices:
-    if total + price <= b:
-        total += price
-        count += 1
-    else:
-        break
-print(count)
+n = int(input())
+a = list(map(int, input().split()))
+
+if n < 3:
+    print(0.0)
+else:
+    a.sort()
+    trimmed = a[1:-1]
+    mean = sum(trimmed) / len(trimmed)
+    print("{0:.1f}".format(mean))
