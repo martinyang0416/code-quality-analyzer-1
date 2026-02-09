@@ -1,16 +1,17 @@
 def main():
     import sys
-    s = sys.stdin.read().strip()
-    n = len(s)
-    
-    # Precompute prefix sums for each of the required characters
-    prefix_b = [0] * (n + 1)
-    prefix_e = [0] * (n + 1)
-    prefix_s = [0] * (n + 1)
-    prefix_i = [0] * (n + 1)
-    
-    for i in range(n):
-        prefix_b[i+1] = prefix_b[i] + (1 if s[i] == 'b' else 0)
-        prefix_e[i+1] = prefix_e[i] + (1 if s[i] == 'e' else 0)
-        prefix_s[i+1] = prefix_s[i] + (1 if s[i] == 's' else 0)
-        prefix_i[i+
+    s = sys.stdin.readline().strip()
+    N = len(s)
+    T = ['b', 'e', 's', 's', 'i', 'e']  # The target "bessie" characters
+
+    count = [0] * 7
+    count[0] = 1  # base case: 1 way to form 0 characters
+    sum_s = [0] * 7  # sum_s[0] is 0 since start is undefined for empty subsequence
+    total = 0
+
+    for pos in range(N):
+        c = s[pos]
+        prev_count = count.copy()
+        prev_sum = sum_s.copy()
+
+        # Update the count and sum_s arrays for each possib
