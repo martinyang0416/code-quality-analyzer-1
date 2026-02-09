@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 
 def main():
     C, N = map(int, sys.stdin.readline().split())
@@ -12,10 +13,11 @@ def main():
                 mask |= 1
         masks.append(mask)
     
-    # Build trie with unique masks
-    unique_masks = list(set(masks))
-    root = {}
-    for mask in unique_masks:
-        node = root
-        for bit in range(C):
-            current_bit = (mask >> (C - 
+    size = 1 << C
+    INF = float('inf')
+    min_dist = [INF] * size
+    q = deque()
+    
+    # Initialize distances for all masks in the list
+    for m in masks:
+        if 
