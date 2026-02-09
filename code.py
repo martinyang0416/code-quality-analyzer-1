@@ -1,17 +1,21 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    m = int(input[0])
-    n = int(input[1])
-    grid = input[2:2+m]
-    rows = m
-    cols = len(grid[0]) if m > 0 else 0
+la, lb = map(int, input().split())
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
 
-    # Preprocess blocks
-    visited = [[False for _ in range(cols)] for _ in range(rows)]
-    block_map = [[None for _ in range(cols)] for _ in range(rows)]
-    blocks = []
-    for y in range(rows):
-        for x in range(cols):
-            if not visited[y][x] and grid[y][x] != '0':
-                color = grid[
+pos_in_b = {x: i for i, x in enumerate(b)}
+a_doubled = a * 2  # Handle circular sequences
+
+max_len = 0
+current_len = 0
+prev_adjusted = -1  # Initialize to a value lower than any possible position (0 to lb-1)
+
+for x in a_doubled:
+    if x not in pos_in_b:
+        current_len = 0
+        prev_adjusted = -1
+        continue
+    
+    pos = pos_in_b[x]
+    
+    if current_len == 0:
+        curr
