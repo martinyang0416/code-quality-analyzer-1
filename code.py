@@ -1,3 +1,4 @@
+a = int(input())
 presidents = [
     "Washington",
     "Adams",
@@ -30,5 +31,4 @@ presidents = [
     "Harding",
     "Coolidge",
     "Hoover",
-    "Roosevelt",
     "
