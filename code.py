@@ -1,5 +1,3 @@
-Okay, I need to solve this programming problem where the input is an integer a between 1 and 30, and the output is another integer. The example given is input 3 outputs 27. Let me think about what's going on here. 
+Okay, let's see. The problem is to take an integer a between 1 and 30 and output some result. The example given is input 3 outputs 27. Hmm, 3 cubed is 27. So maybe the problem is to compute a cubed? Wait, but let me think again. Because maybe there's a trick here. Let's see other possibilities. Like, perhaps the output is the sum of numbers up to a? No, 3 would be 6. Or factorial? 3! is 6. Not 27. So 3^3 is 27. That fits. So maybe the task is just to compute a cubed. 
 
-Hmm, 3 cubed is 27. Oh right! So maybe the problem is to compute a cubed? Let me check. If that's the case, then the output is simply a multiplied by itself twice. So for any input a, the output is a^3. 
-
-Wait, but let me make sure there's no trick here. The problem statement is shor
+But why would the problem 
