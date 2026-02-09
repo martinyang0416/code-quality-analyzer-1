@@ -1,6 +1,6 @@
 s = input().strip()
-even_count = 0
-for c in s:
-    if int(c) % 2 == 0:
-        even_count += 1
-print("Yes" if even_count % 2 == 0 else "No")
+digits = s[1:]  # Extract the 6 digits
+two_digit = int(digits[:2])
+if '0' in digits:
+    two_digit -= 1
+print(two_digit)
