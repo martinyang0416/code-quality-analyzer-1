@@ -1,21 +1,23 @@
 import sys
 
 def main():
-    sys.setrecursionlimit(1 << 25)
-    target = ['b', 'e', 's', 's', 'i', 'e']
-    m = len(target)
+    T_target = ['b', 'e', 's', 's', 'i', 'e']
     
-    class SegmentTreeNode:
-        __slots__ = ['left', 'right', 'start', 'end', 'data']
-        def __init__(self, l, r):
-            self.left = None
-            self.right = None
-            self.start = l
-            self.end = r
-            self.data = [0]*(m+1)
+    # Read input
+    s = sys.stdin.readline().strip()
+    n = len(s)
+    matrices = []
+    for c in s:
+        mat = [[0]*7 for _ in range(7)]
+        mat[0][0] = 1
+        for i in range(1, 7):
+            mat[i][i] = 1
+            if c == T_target[i-1]:
+                mat[i][i-1] = 1
+        matrices.append(mat)
     
-    def build(l, r):
-        node = SegmentTreeNode(l, r)
-        if l == r:
-            c = s[l]
- 
+    # Compute initial V array
+    D0 = [0]*7
+    D0[0] = 1
+    V = []
+    current = [0]*7  # Initial st
