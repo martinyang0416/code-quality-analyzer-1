@@ -1,21 +1,20 @@
 import sys
-
-MOD = 10**9 + 7
+from collections import deque
 
 def main():
-    # Read input
-    N, K, Q = map(int, sys.stdin.readline().split())
-    input_line = sys.stdin.readline().split()
-    p = int(input_line[0])
-    q = int(input_line[1])
-    r = int(input_line[2])
-    s = int(input_line[3])
-    u = int(input_line[4])
-    v = int(input_line[5])
-    w = int(input_line[6])
-    x = int(input_line[7])
-    y = int(input_line[8])
-    G1 = int(input_line[9])
+    N = int(sys.stdin.readline())
+    adj = [[] for _ in range(N + 1)]
+    for _ in range(N - 1):
+        u, v = map(int, sys.stdin.readline().split())
+        adj[u].append(v)
+        adj[v].append(u)
     
-    L1_line = sys.stdin.readline().split()
-    L1 = int(L1_line[0])
+    K = int(sys.stdin.readline())
+    levels = {}
+    for _ in range(K):
+        u, L = map(int, sys.stdin.readline().split())
+        levels[u] = L
+    
+    # Check edges between pre-assigned nodes
+    for u in levels:
+        for v in ad
