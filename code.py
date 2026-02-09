@@ -1,23 +1,19 @@
-import math
+n, k = map(int, input().split())
+f = list(map(int, input().split()))
+w = list(map(int, input().split()))
 
-n = int(input())
-l = list(map(int, input().split()))
-c = list(map(int, input().split()))
+max_level = 35  # Sufficient for k up to 1e10
 
-dp = {}
+# Initialize binary lifting tables
+up = [[0] * n for _ in range(max_level)]
+sum_up = [[0] * n for _ in range(max_level)]
+min_up = [[float('inf')] * n for _ in range(max_level)]
 
+# Base case: 2^0 steps
 for i in range(n):
-    li = l[i]
-    ci = c[i]
-    current_entries = list(dp.items())
-    for g, cost in current_entries:
-        new_g = math.gcd(g, li)
-        new_cost = cost + ci
-        if new_g in dp:
-            if new_cost < dp[new_g]:
-                dp[new_g] = new_cost
-        else:
-            dp[new_g] = new_cost
-    if li in dp:
-        if ci < dp[li]:
-            dp[li] 
+    up[0][i] = f[i]
+    sum_up[0][i] = w[i]
+    min_up[0][i] = w[i]
+
+# Precompute the lifting tables for higher powers of two
+f
