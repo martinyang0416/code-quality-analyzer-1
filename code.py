@@ -1,22 +1,22 @@
-s = input().strip()
+from collections import deque
 
-args = []
-current_arg = []
-state = 'outside'
+def longest_temperature_span():
+    import sys
+    n = int(sys.stdin.readline())
+    temps = list(map(int, sys.stdin.readline().split()))
+    if n == 0:
+        print(0)
+        return
 
-for char in s:
-    if state == 'outside':
-        if char == ' ':
-            if current_arg:
-                args.append(''.join(current_arg))
-                current_arg = []
-        elif char == '[':
-            if current_arg:
-                args.append(''.join(current_arg))
-                current_arg = []
-            state = 'inside'
-        else:
-            current_arg.append(char)
-    else:
-        if char == ']':
-     
+    max_deque = deque()
+    min_deque = deque()
+    left = 0
+    max_len = 0
+
+    for right in range(n):
+        current_temp = temps[right]
+
+        # Update max_deque
+        while max_deque and temps[max_deque[-1]] <= current_temp:
+            max_deque.pop()
+        max_deque.ap
