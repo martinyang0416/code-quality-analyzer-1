@@ -1,3 +1,16 @@
+def is_prime(n):
+    if n <= 1:
+        return False
+    if n == 2:
+        return True
+    if n % 2 == 0:
+        return False
+    max_divisor = int(n**0.5) + 1
+    for i in range(3, max_divisor, 2):
+        if n % i == 0:
+            return False
+    return True
+
 s = input().strip()
-last_digit = s[-1]
-print(1 if int(last_digit) % 2 else 0)
+total = sum(int(c) for c in s)
+print("Yes" if is_prime(total) else "No")
