@@ -1,22 +1,18 @@
-import sys
-from functools import lru_cache
+def generate_partitions():
+    nums = [1, 2, 3, 4, 5, 6]
+    partitions = []
 
-sys.setrecursionlimit(1000000)
+    def helper(remaining, path):
+        if not remaining:
+            partitions.append(path.copy())
+            return
+        first = remaining[0]
+        for i in range(1, len(remaining)):
+            pair = (first, remaining[i])
+            new_remaining = remaining[1:i] + remaining[i+1:]
+            helper(new_remaining, path + [pair])
 
-@lru_cache(maxsize=None)
-def max_currency(n):
-    if n == 0:
-        return 0
-    split1 = n // 2
-    split2 = n // 3
-    option_split = max_currency(split1) + max_currency(split2)
-    return max(n, option_split)
+    helper(nums, [])
+    return partitions
 
-def main():
-    import sys
-    for line in sys.stdin:
-        n = int(line.strip())
-        print(max_currency(n))
-
-if __name__ == '__main__':
-    main()
+all_partitions = generate_partiti
