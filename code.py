@@ -1,16 +1,21 @@
-def main():
-    import sys
-    input = sys.stdin.read().split()
-    idx = 0
-    T = int(input[idx])
-    idx += 1
-    for _ in range(T):
-        N = int(input[idx])
-        idx += 1
-        # Read N elements but don't need them as all pairs are valid
-        idx += N
-        result = N * (N - 1) // 2
-        print(result)
-        
-if __name__ == "__main__":
-    main()
+Q = int(input())
+for _ in range(Q):
+    s = input().strip()
+    n = len(s)
+    if n < 3:
+        print(-1)
+        continue
+    min_ops = float('inf')
+    for i in range(n - 2):
+        substr = s[i:i+3]
+        if substr[1] != 'B':
+            continue
+        changes = 0
+        if substr[0] != 'A':
+            changes += 1
+        if substr[2] != 'A':
+            changes += 1
+        total_ops = changes + (n - 3)
+        if total_ops < min_ops:
+            min_ops = total_ops
+    print(min_op
