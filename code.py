@@ -1,21 +1,17 @@
-s1 = "What are you doing while sending "  # Length 33
-s2 = "? Are you busy? Will you send "     # Length 30
-f0 = "What are you doing at the end of the world? Are you busy? Will you save us?"  # Length 75
+def main():
+    A_str = "What are you doing while sending "  # 33 characters
+    B_str = " Are you busy? Will you send "      # 29 characters
+    f0_str = ("What are you doing at the end of the world? Are you busy? " +
+              "Will you save us?")               # 75 characters
 
-threshold = 60
+    q = int(input())
+    results = []
 
-def compute_L(n):
-    return 143 * (2 ** n) - 68
+    for _ in range(q):
+        n, k = map(int, input().split())
+        current_n = n
+        current_k = k
+        result = '.'  # default if not found
 
-def get_char(n, k):
-    if n < 0 or k < 1:
-        return '.'
-    
-    # Check if within length for small n
-    if n <= threshold:
-        L_n = compute_L(n)
-        if k > L_n:
-            return '.'
-    
-    current_n = n
-    c
+        while True:
+  
