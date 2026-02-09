@@ -1,17 +1,19 @@
-n = int(input())
-arr = list(map(int, input().split()))
-total = sum(arr)
-dp = [0] * n
+import sys
+from collections import defaultdict
 
-dp[0] = arr[0]
+# Precompute prime factors for numbers 1 to 100
+primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
 
-for i in range(1, n):
-    max_h = 0
-    for j in range(i):
-        current_max = min(arr[i], dp[j] - 1)
-        if current_max > max_h:
-            max_h = current_max
-    dp[i] = max_h
-
-sum_new = sum(dp)
-print(total - sum_new)
+prime_factors = {}
+for k in range(1, 101):
+    factors = defaultdict(int)
+    num = k
+    for p in primes:
+        if p > num:
+            break
+        while num % p == 0:
+            factors[p] += 1
+            num //= p
+    if num > 1 and k != 1:
+        factors[num] += 1
+    prime_factors[k] 
